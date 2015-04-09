@@ -1,0 +1,625 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context=".UserInfo$DummySectionFragment">
+
+            <EditText
+                android:id="@+id/TextInvisible"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:id="@+id/buttonGetStarted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="Get started with Fountain City Cycling" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/buttonGetStarted"
+                android:layout_below="@+id/buttonGetStarted"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Tell us about yourself"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="15dp"
+                android:text="Age"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/ageSpinner"
+                android:layout_marginTop="15dp"
+                android:text="Email"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/TextEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView3"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_toRightOf="@+id/textView1"
+                android:ems="10"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/TextEmail"
+                android:layout_marginTop="25dp"
+                android:text="Gender"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/genderSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextEmail"
+                android:layout_alignRight="@+id/TextEmail"
+                android:layout_alignTop="@+id/textView4"
+                android:entries="@array/genderArray" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/genderSpinner"
+                android:layout_marginTop="15dp"
+                android:text="Ethnicity"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/ethnicitySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/genderSpinner"
+                android:layout_alignRight="@+id/genderSpinner"
+                android:layout_alignTop="@+id/textView5"
+                android:entries="@array/ethnicityArray" />
+
+            <Spinner
+                android:id="@+id/incomeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/ethnicitySpinner"
+                android:layout_alignRight="@+id/ethnicitySpinner"
+                android:layout_alignTop="@+id/textView6"
+                android:entries="@array/incomeArray" />
+
+            <Spinner
+                android:id="@+id/ageSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextEmail"
+                android:layout_alignRight="@+id/TextEmail"
+                android:layout_alignTop="@+id/textView2"
+                android:entries="@array/ageArray" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/ethnicitySpinner"
+                android:layout_marginTop="16dp"
+                android:text="Home Income"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/incomeSpinner"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Your typical commute"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textViewHomeZip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView7"
+                android:layout_marginTop="15dp"
+                android:text="Home ZIP"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/TextZipHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textViewHomeZip"
+                android:layout_alignRight="@+id/incomeSpinner"
+                android:layout_toRightOf="@+id/textView7"
+                android:ems="10"
+                android:hint="@string/zip_hint"
+                android:inputType="number"></EditText>
+
+            <TextView
+                android:id="@+id/textViewWorkZip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textViewHomeZip"
+                android:layout_marginTop="15dp"
+                android:text="Work ZIP"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/TextZipWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textViewWorkZip"
+                android:layout_alignRight="@+id/incomeSpinner"
+                android:layout_toRightOf="@+id/textView7"
+                android:ems="10"
+                android:hint="@string/zip_hint"
+                android:inputType="number"></EditText>
+
+            <TextView
+                android:id="@+id/textViewSchoolZip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textViewWorkZip"
+                android:layout_marginTop="15dp"
+                android:text="School ZIP"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/TextZipSchool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textViewSchoolZip"
+                android:layout_alignRight="@+id/incomeSpinner"
+                android:layout_toRightOf="@+id/textView7"
+                android:ems="10"
+                android:hint="@string/zip_hint"
+                android:inputType="number"></EditText>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewSchoolZip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="How often do you cycle?"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textViewCycleFreq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView8"
+                android:layout_marginTop="15dp"
+                android:text="Cycle Frequency"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cyclefreqSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextEmail"
+                android:layout_alignRight="@+id/TextEmail"
+                android:layout_alignTop="@+id/textViewCycleFreq"
+                android:entries="@array/cyclefreqArray" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewCycleFreq"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="What kind of rider are you?"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textViewRiderType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView9"
+                android:layout_marginTop="15dp"
+                android:text="Rider Type"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/ridertypeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextEmail"
+                android:layout_alignRight="@+id/TextEmail"
+                android:layout_alignTop="@+id/textViewRiderType"
+                android:entries="@array/ridertypeArray" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewRiderType"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:text="How long have you been a cyclist?"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textViewRiderHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView10"
+                android:layout_marginTop="15dp"
+                android:text="Rider History"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/riderhistorySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextEmail"
+                android:layout_alignRight="@+id/TextEmail"
+                android:layout_alignTop="@+id/textViewRiderHistory"
+                android:entries="@array/riderhistoryArray" />
+<!--
+            <TextView
+                android:id="@+id/deleted_trip_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/riderhistorySpinner"
+                android:layout_marginTop="15dp"
+                android:text="Accidentally delete a trip?"
+                android:textStyle="italic"/>
+
+            <Button
+                android:id="@+id/deleted_trip_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/deleted_trip_text"
+                android:text="Download previously saved trips!" />
+-->
+        </RelativeLayout>
+    </ScrollView>
+    
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--******************* Instructions Layout **********************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+
+    <RelativeLayout
+        android:id="@+id/x_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/textview_padding"
+            android:text="Fountain City Cycling Instructions"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/body_text_medium"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingRight="@dimen/spacing_small"
+            android:src="@drawable/x"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/instructions_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/instructions_ll_test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/instruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textview_padding"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/instructions_1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_1"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="1.) Recording A Ride"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_2_recording" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_2"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="2.) Specifying the Trip Purpose"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_3_specifying" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_3"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="3.) Maps"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_4_maps" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_4"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="4.) Notes"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_5_notes" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_5"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="5.) Note Details"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_6_details" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_6"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="6.) My Notes"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_7_mynotes" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_7"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="7.) Settings"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <ImageView
+                android:id="@+id/instruction_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:src="@drawable/instructions_8_settings" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/instruction_8"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:src="@drawable/underline"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="Steps to make sure Fountain City Cycling works properly"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body_text_medium"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/textview_padding"
+                android:text="@string/steps_working_properly"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.auburn.ppl.cyclecolumbus"
+    android:versionCode="3"
+    android:versionName="1.2" >
+    <uses-sdk
+        android:minSdkVersion="13"
+        android:targetSdkVersion="19" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" >
+    </uses-feature>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/fountain_city_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.TabsConfig"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.TripPurposeActivity"
+            android:label="@string/title_activity_trip_purpose" >
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.TripMapActivity"
+            android:label="@string/title_activity_trip_map" >
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.TripDetailActivity"
+            android:label="@string/title_activity_trip_detail" >
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.NoteTypeActivity"
+            android:label="@string/title_activity_note_type" >
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.NoteDetailActivity"
+            android:label="@string/title_activity_note_detail" >
+        </activity>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.NoteMapActivity"
+            android:label="@string/title_activity_note_map" >
+        </activity>
+        <service
+            android:name="edu.auburn.ppl.cyclecolumbus.RecordingService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <activity
+            android:name="edu.auburn.ppl.cyclecolumbus.LeaderboardActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="Leader Board" >
+        </activity>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDkDhZBmc1CkS83vU5ae1mHm-edhsvC2Z0" />
+        <!-- Debug Key: AIzaSyBD5-6W73yesu0gAjvGkmNIq0Y6xUImrW4 -->
+        <!-- Release Key: AIzaSyBO6BnsVx-9A7fpxhC-eNGY_ZF-a8I1UNo​-->
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+</manifest>

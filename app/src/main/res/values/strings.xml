@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fountain City Cycling</string>
+    <string name="title_section4">Setting</string>
+    <string name="title_section3">Notes</string>
+    <string name="title_section2">Trips</string>
+    <string name="title_section1">Record</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_input">Record</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_trip_purpose">Trip Purpose</string>
+    <string name="title_activity_user_info">User Information</string>
+    <string name="title_activity_trip_map">Trip Map</string>
+    <string name="title_activity_saved_trips">Saved Trips</string>
+    <string name="title_activity_trip_detail">Trip Details</string>
+    <string name="title_activity_note_type">Note Type</string>
+    <string name="title_activity_note_detail">Note Details</string>
+    <string name="title_activity_note_map">Note Map</string>
+    <string name="title_activity_saved_notes">Saved Notes</string>
+
+    <string-array name="ageArray">
+        <item></item>
+        <item>Less than 18</item>
+        <item>18–24</item>
+        <item>25–34</item>
+        <item>35–44</item>
+        <item>45–54</item>
+        <item>55–64</item>
+        <item>65+</item>
+    </string-array>
+    <string-array name="genderArray">
+        <item></item>
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <string-array name="ethnicityArray">
+        <item></item>
+        <item>White</item>
+        <item>African American</item>
+        <item>Asian</item>
+        <item>Native American</item>
+        <item>Pacific Islander</item>
+        <item>Multi-racial</item>
+        <item>Hispanic / Mexican / Latino</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="incomeArray">
+        <item></item>
+        <item>Less than $20,000</item>
+        <item>$20,000 to $39,999</item>
+        <item>$40,000 to $59,999</item>
+        <item>$60,000 to $74,999</item>
+        <item>$75,000 to $99,999</item>
+        <item>$100,000 or greater</item>
+    </string-array>
+    <string-array name="cyclefreqArray">
+        <item></item>
+        <item>Less than once a month</item>
+        <item>Several times a month</item>
+        <item>Several times per week</item>
+        <item>Daily</item>
+    </string-array>
+    <string-array name="ridertypeArray">
+        <item></item>
+        <item><![CDATA[Strong & fearless]]></item>
+        <item><![CDATA[Enthused & confident]]></item>
+        <item>Comfortable, but cautious</item>
+        <item>Interested, but concerned</item>
+    </string-array>
+    <string-array name="riderhistoryArray">
+        <item></item>
+        <item>Since childhood</item>
+        <item>Several years</item>
+        <item>One year or less</item>
+        <item>Just trying it out / just started</item>
+    </string-array>
+
+    <string name="email_hint">name@domain</string>
+    <string name="zip_hint">12345</string>
+
+    <string-array name="trippurposeArray">
+        <item>Commute</item>
+        <item>School</item>
+        <item>Work-Related</item>
+        <item>Exercise</item>
+        <item>Social</item>
+        <item>Shopping</item>
+        <item>Errand</item>
+        <item>Other</item>
+    </string-array>
+
+    <string name="title_activity_main">Fountain City Cycling</string>
+
+    <!--=============================================-->
+    <!-- Instruction TextViews in activity_user_info -->
+    <!--=============================================-->
+    <string name="instruction_1">Upon launching the app, you\'ll find yourself on the <b>Record</b> screen.\n\n
+        Confirm the iPhone has a good fix on your location by checking the map before tapping Start.
+        (GPS conditions sometimes prevent accurate location. If this is the case, cycle a short distance
+        and check again.)  \n\nWhen you\'re ready to start recording your ride, tap <b>Start.</b></string>
+    <string name="instruction_2">When your ride is over, tap <b>Save.</b> Confirm that your trip is done by
+        tapping <b>Save</b> in the next pop-up. If you don\'t want to save the trip and upload the data - for
+        whatever reason - simply choose <b>Discard.</b> If you tap Save by accident and want to continue recording
+        your current trip, choose <b>Continue</b>.\n\nIf you have switched to another app while recording
+        your ride, you can get back to Fountain City Cycling by selecting it from your Home Screen or from
+        the App Switcher. If your battery goes below a 20% charge, Fountain City Cycling will automatically stop
+        recording and shut down.</string>
+    <string name="instruction_3">Select a purpose on the <b>Trip Purpose</b> screen and tap <b>Save.</b> We\'re
+        interested in the MAIN purpose for each trip you make. If you\'re unsure how to categorize a
+        trip, select <b>Other</b> from the Trip Purpose chooser. You can always include a comment before
+        transmitting.\n\nFountain City Cycling will prompt you to enter comments or notes on the ride, which you can
+        skip if you have none. It will then upload your ride data, notifying you when done. If there\'s a problem
+        connecting to the server, it will prompt you to retry at another time.</string>
+    <string name="instruction_4">After your data is uploaded, Fountain City Cycling displays the map of your ride,
+        showing the route, distance travelled, and average speed.\n\nTap <b>My Trips</b> on the tab-bar at the
+        bottom of the screen to show a list of all your rides, including dates, times, mileage, CO2 saved,
+        and calories burned. Tap on a trip to display its map. Share the map with others by taking a
+        screenshot (press Sleep/wake and Home simultaneously), and sending it via email or downloading
+        it to your computer. Hint: you can zoom in or out on the map. Tap <b>Edit</b> on the trip list to delete
+        a trip.</string>
+    <string name="instruction_5">Do you know of an asset that will help other cyclists along your route - such
+        as good bike parking, a water fountain, or a secret passage to cut through? Or have you noticed an
+        issue you\'d like to see addressed - such as a traffic signal that won\'t change or a problem with a
+        bike lane? Tap on <b>Note this</b> and choose the issue or assets from the pop-up and then tap <b>Save</b>.
+        \n\nIf none of the options fit your observation, choose <b>Note this asset</b> or <b>Note this issue</b>
+        and you can fill in additional details on the next screen. Tap <b>Save</b> on the <b>Detail</b> screen to
+        upload your issue or asset.</string>
+    <string name="instruction_6">You can add an optional photo or additional details for each issue and asset,
+        or skip either one and just tap <b>Save</b> to upload your note.\n\nTap <b>Add photo</b> to open the camera
+        and take a photo of the issue or asset. You can then preview your photo, and either tap <b>Use</b>, or
+        <b>Retake</b> if you want to take it again. Type any optional notes in the <b>Additional Details</b> box.</string>
+    <string name="instruction_7">Tap <b>My Notes</b> on the tab-bar at the bottom of the screen to show a list of
+        all your assets (in blue) and issues (in red), with dates and times.\n\nTap on a note to display
+        its map. You can then tap the <b>i</b> for Info to see the picture and additional details, if any, that
+        you entered for this note. Tap <b>Edit</b> on the top of the <b>My Notes</b> page to delete a note.</string>
+    <string name="instruction_8">Entering personal info is completely optional and confidential, and, if you
+        choose to participate, only has to be done once. It involves a few basic questions useful to our
+        study. If you wish to give us your email address, the City of Columbus may contact
+        you directly about your experience using Fountain City Cycling or bicycling in the city. Tap <b>Save</b> when
+        finished.\n\nThis Help menu is available from <b>Getting started with Fountain City Cycling</b>.</string>
+    <string name="steps_working_properly">For your own safety, please do not listen to music with your
+        headphones, talk on the phone, or look at the screen while cycling. Please pull over before
+        reporting an asset or issue on your trip.\n\nBe sure to enable Location in your phone\'s Settings.
+        (From the Home page, go to Settings, then Location Services.)</string>
+
+</resources>
