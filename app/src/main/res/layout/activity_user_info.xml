@@ -33,12 +33,21 @@
                 android:layout_alignParentTop="true"
                 android:text="Get started with Fountain City Cycling" />
 
+            <Button
+                android:id="@+id/contest_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/buttonGetStarted"
+                android:text="Contest Agreement" />
+
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonGetStarted"
-                android:layout_below="@+id/buttonGetStarted"
+                android:layout_alignLeft="@+id/contest_agreement"
+                android:layout_below="@+id/contest_agreement"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Tell us about yourself"
@@ -300,6 +309,15 @@
                 android:layout_alignRight="@+id/TextEmail"
                 android:layout_alignTop="@+id/textViewRiderHistory"
                 android:entries="@array/riderhistoryArray" />
+
+            <Button
+                android:id="@+id/website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/buttonGetStarted"
+                android:layout_alignRight="@+id/buttonGetStarted"
+                android:layout_below="@+id/riderhistorySpinner"
+                android:text="View Our Website!" />
 <!--
             <TextView
                 android:id="@+id/deleted_trip_text"
@@ -337,10 +355,10 @@
         android:layout_height="wrap_content"
         android:visibility="gone">
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/textview_padding"
-            android:text="Fountain City Cycling Instructions"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="@dimen/body_text_medium"/>
@@ -622,4 +640,62 @@
                 android:text="@string/steps_working_properly"/>
         </LinearLayout>
     </ScrollView>
+
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--******************* Contest Agreement ************************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+    <!--**************************************************************************-->
+
+    <RelativeLayout
+        android:id="@+id/contest_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_xlarge">
+
+            <LinearLayout
+                android:id="@+id/contest_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/textview_padding"
+                    android:text="@string/user_agreement"
+                    android:textSize="@dimen/body_text_small"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/body_text_medium"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="I Agree"/>
+
+            <Button
+                android:id="@+id/disagree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="I Disagree"/>
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

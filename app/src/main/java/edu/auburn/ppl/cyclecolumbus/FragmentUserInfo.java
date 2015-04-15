@@ -9,7 +9,9 @@ package edu.auburn.ppl.cyclecolumbus;
  * @date February 4, 2015
  */
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -22,7 +24,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -42,6 +48,7 @@ public class FragmentUserInfo extends Fragment {
 	public final static int PREF_RIDERHISTORY = 11;
 
 	private static final String TAG = "UserPrefActivity";
+    private final String websiteUrl = "http://www.columbusga.org/planning/fcc/fcc.htm";
 
 	public FragmentUserInfo() {
 	}
@@ -61,6 +68,9 @@ public class FragmentUserInfo extends Fragment {
                 View x = rootView.findViewById(R.id.x_rl);
                 rootView.findViewById(R.id.ScrollView01).setVisibility(View.GONE);
 
+                TextView title = (TextView) rootView.findViewById(R.id.title);
+                title.setText("Fountain City Cycling Instructions");
+
                 FadeSingleton fade = FadeSingleton.getInstance();
                 int mShortAnimationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
                 mShortAnimationDuration *= 2;
@@ -69,6 +79,36 @@ public class FragmentUserInfo extends Fragment {
                 setXClickListener(rootView, fade, mShortAnimationDuration);
 			}
 		});
+
+        final Button contestAgreement = (Button) rootView.findViewById(R.id.contest_agreement);
+        contestAgreement.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                View instructions = rootView.findViewById(R.id.contest_scroll);
+                View x = rootView.findViewById(R.id.x_rl);
+                rootView.findViewById(R.id.ScrollView01).setVisibility(View.GONE);
+
+                TextView title = (TextView) rootView.findViewById(R.id.title);
+                title.setText("Contest Agreement");
+
+                FadeSingleton fade = FadeSingleton.getInstance();
+                int mLongAnimationDuration = getResources().getInteger(android.R.integer.config_longAnimTime);
+                mLongAnimationDuration *= 2;
+                fade.fadeIn(instructions, mLongAnimationDuration);
+                fade.fadeIn(x, mLongAnimationDuration);
+                setXClickListener(rootView, fade, mLongAnimationDuration);
+            }
+        });
+
+        final Button website = (Button) rootView.findViewById(R.id.website);
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrl));
+                startActivity(browserIntent);
+            }
+        });
+
+        setUserAgreementsClickListener(rootView);
 
 		SharedPreferences settings = getActivity().getSharedPreferences(
 				"PREFS", 0);
@@ -162,15 +202,66 @@ public class FragmentUserInfo extends Fragment {
         x.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View instructions = view.findViewById(R.id.instructions_scroll);
+
+                TextView title = (TextView) view.findViewById(R.id.title);
+                String currentView = title.getText().toString();
+
+                View displayedView;
+                if (currentView.toLowerCase().equals("Contest Agreement"))
+                    displayedView = view.findViewById(R.id.instructions_scroll);
+                else displayedView = view.findViewById(R.id.instructions_scroll);
+
                 View scroll1 = view.findViewById(R.id.ScrollView01);
 
                 fade.fadeIn(scroll1, mShortAnimationDuration);
-                fade.fadeOut(instructions, mShortAnimationDuration);
+                fade.fadeOut(displayedView, mShortAnimationDuration);
                 fade.fadeOut(x, mShortAnimationDuration);
             }
         });
     }
+
+    /*************************************************************************************************
+     * Saves the agreement IN-APP.
+     * Writes to internal memory file in JSON form
+     *************************************************************************************************
+     *************************************************************************************************/
+    private void setUserAgreementsClickListener(final View view) {
+
+        Button agree = (Button) view.findViewById(R.id.agree);  // User agrees
+        agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JsonStorage jsonStorage = new JsonStorage(getActivity());
+                try {
+                    JSONObject json = new JSONObject(); // Create new json object
+                    json.put("agree", true);            // Put a boolean into object
+                    jsonStorage.writeJSON(json);        // Write it to internal memory
+                    Toast.makeText(getActivity(), "Agreement Saved.", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getActivity(), "Could not save agreement at this time.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Button disagree = (Button) view.findViewById(R.id.disagree);  // User disagrees
+        disagree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JsonStorage jsonStorage = new JsonStorage(getActivity());
+                try {
+                    JSONObject json = new JSONObject(); // Create new json object
+                    json.put("agree", false);           // Put a boolean into object
+                    jsonStorage.writeJSON(json);        // Write it to internal memory
+                    Toast.makeText(getActivity(), "Disagreement Saved.", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getActivity(), "Could not save disagreement at this time.", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();

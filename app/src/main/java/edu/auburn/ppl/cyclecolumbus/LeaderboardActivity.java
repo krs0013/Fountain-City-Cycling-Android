@@ -5,8 +5,11 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -45,6 +48,10 @@ public class LeaderboardActivity extends ListActivity {
     private static final String TAG_LEADERS = "leaders";
     private static final String TAG_USER_ID = "user_id";
     private static final String TAG_SCORE = "score";
+    private static final String TAG_DEVICE = "device";
+
+    private String myDeviceID = "";
+    private String user_id = "";
 
     // products JSONArray
     JSONArray products = null;
@@ -59,6 +66,8 @@ public class LeaderboardActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.leaderboard_layout);
 
+        myDeviceID = getDeviceId();
+
         // Hashmap for ListView
         leaderList = new ArrayList<HashMap<String, String>>();
 
@@ -72,6 +81,14 @@ public class LeaderboardActivity extends ListActivity {
             @Override
             public void onRefresh() {
                 refreshContent();
+            }
+        });
+
+        Button whatsMyId = (Button) findViewById(R.id.whats_my_id);
+        whatsMyId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Your Rider ID is: " + user_id, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -116,6 +133,12 @@ public class LeaderboardActivity extends ListActivity {
                         // Storing each json item in variable
                         String id = "Rider ID: " + c.getString(TAG_USER_ID);
                         String score = "Score: " + c.getString(TAG_SCORE);
+
+                        String tempDeviceID = c.getString(TAG_DEVICE);
+
+                        if (tempDeviceID.equals(myDeviceID)) {
+                            user_id = c.getString(TAG_USER_ID);
+                        }
 
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
@@ -184,5 +207,29 @@ public class LeaderboardActivity extends ListActivity {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         }, 2000);
+    }
+
+    public String getDeviceId() {
+        String androidId = Settings.System.getString(this.getContentResolver(),
+                Settings.System.ANDROID_ID);
+        String androidBase = "androidDeviceId-";
+
+        if (androidId == null) { // This happens when running in the Emulator
+            final String emulatorId = "android-RunningAsTestingDeleteMe";
+            return emulatorId;
+        }
+        String deviceId = androidBase.concat(androidId);
+
+        // Fix String Length
+        int a = deviceId.length();
+        if (a < 32) {
+            for (int i = 0; i < 32 - a; i++) {
+                deviceId = deviceId.concat("0");
+            }
+        } else {
+            deviceId = deviceId.substring(0, 32);
+        }
+
+        return deviceId;
     }
 }

@@ -90,6 +90,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
     public static final String USER_ZIP_SCHOOL = "schoolZIP";
     public static final String USER_CYCLING_FREQUENCY = "cyclingFreq";
     public static final String APP_VERSION = "app_version";
+    public static final String USER_AGREE = "agree";
 
     public static final String USER_ETHNICITY = "ethnicity";
     public static final String USER_INCOME = "income";
@@ -100,6 +101,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
     private String co2 = "";
     private String distance = "";
     private String avgCost = "";
+    private boolean didAgree = false;
 
     public TripUploader(Context ctx) {
         super();
@@ -195,6 +197,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
                 settings.getInt("" + FragmentUserInfo.PREF_RIDERHISTORY, 0));
 
         user.put(APP_VERSION, getAppVersion());
+        user.put(USER_AGREE, getUserAgreement());
 
         return user;
     }
@@ -298,6 +301,8 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         String purpose = tripData.get(1);
         String startTime = tripData.get(2);
         // String endTime = tripData.get(3);
+        if (didAgree) Log.d("KENNY", "USER AGREEMENT: TRUE");
+        else Log.d("KENNY", "USER AGREEMENT: FALSE");
 
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         nameValuePairs.add(new BasicNameValuePair("coords", coords.toString()));
@@ -544,5 +549,26 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         float dist = cursor.getFloat(cursor.getColumnIndex("distance")) * 0.0006212f;
         DecimalFormat dfDistance = new DecimalFormat("0.0#");
         distance = String.valueOf(dfDistance.format(dist));
+    }
+
+    private boolean getUserAgreement() {
+
+        // See if user agreed to contest terms
+        JsonStorage jsonStorage = new JsonStorage(mCtx);
+        try {
+            String stringJSON = jsonStorage.readJSON();         // Get the string stored in text file
+            JSONObject jsonObject = new JSONObject(stringJSON); // Convert it to JSON form
+            didAgree = jsonObject.getBoolean("agree");
+            if (didAgree) Log.d("KENNY", "Read JSON, the user DID AGREE");
+            else Log.d("KENNY", "Read JSON, the user did NOT AGREE");
+        } catch (IOException e) {
+            Log.d("KENNY", "Something went wrong in I/O");
+            e.printStackTrace();
+        } catch (JSONException ej) {
+            Log.d("KENNY", "Something went wrong with JSON, set didAgree to \"false\"");
+            didAgree = false;
+            ej.printStackTrace();
+        }
+        return didAgree;
     }
 }
