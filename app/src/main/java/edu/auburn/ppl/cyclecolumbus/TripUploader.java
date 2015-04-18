@@ -1,11 +1,10 @@
-/**	 Cycle Altanta, Copyright 2012 Georgia Institute of Technology
- *                                    Atlanta, GA. USA
- *
+/**
+ *   @author Ken Streit, Auburn University
  *   @author Christopher Le Dantec <ledantec@gatech.edu>
  *   @author Anhong Guo <guoanhong15@gmail.com>
  *
- *   Updated/Modified for Atlanta's app deployment. Based on the
- *   CycleTracks codebase for SFCTA.
+ *   Updated/Modified for Columbus, GA. Added more features.
+ *   Based on the CycleTracks codebase for SFCTA.
  *
  *   CycleTracks, Copyright 2009,2010 San Francisco County Transportation Authority
  *                                    San Francisco, CA, USA
@@ -292,6 +291,13 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         }
     }
 
+    /******************************************************************************************
+     * Generates information to send to the server
+     ******************************************************************************************
+     * @param tripId Unique ID for each trip sent.  Unique to ALL RIDERS
+     * @return Returns the data the server reads and stores
+     * @throws JSONException
+     ******************************************************************************************/
     private String getPostData(long tripId) throws JSONException {
         JSONObject coords = getCoordsJSON(tripId);
         JSONObject user = getUserJSON();
@@ -330,6 +336,13 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return codedPostData;
     }
 
+    /******************************************************************************************
+     * Used to see what the server sent back
+     * Usually a "success" or "error" message
+     ******************************************************************************************
+     * @param is Input stream sent back from server
+     * @return Returns a human-readable string of server response
+     ******************************************************************************************/
     private static String convertStreamToString(InputStream is) {
 		/*
 		 * To convert the InputStream to String we use the
@@ -357,6 +370,13 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return sb.toString();
     }
 
+    /******************************************************************************************
+     * Compresses the string to send to the server into byte array
+     ******************************************************************************************
+     * @param string String to compress
+     * @return Byte array to send to server
+     * @throws IOException
+     ******************************************************************************************/
     public static byte[] compress(String string) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream(string.length());
         GZIPOutputStream gos = new GZIPOutputStream(os);
@@ -450,7 +470,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         mDb.openReadOnly();
         Cursor cur = mDb.fetchUnsentTrips();
         if (cur != null && cur.getCount() > 0) {
-            // pd.setMessage("Sent. You have previously unsent trips; submitting those now.");
+            // Reades all unsent trips
             while (!cur.isAfterLast()) {
                 unsentTrips.add(Long.valueOf(cur.getLong(0)));
                 cur.moveToNext();
@@ -522,6 +542,11 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         }
     }
 
+    /******************************************************************************************
+     * Generates and uploads KCal, CO2 savings, Avg Savings from biking vs riding, and distance.
+     ******************************************************************************************
+     * @param cursor Uses this to access SQLite database
+     ******************************************************************************************/
     private void setKcalCo2Savings(Cursor cursor) {
 
         // Set co2
@@ -550,6 +575,11 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         distance = String.valueOf(dfDistance.format(dist));
     }
 
+    /******************************************************************************************
+     * Retrieves the user agreement that was JSON encoded into app memory
+     ******************************************************************************************
+     * @return String form of user agreement (Agree or Disagree)
+     ******************************************************************************************/
     private String getUserAgreement() {
 
         // See if user agreed to contest terms

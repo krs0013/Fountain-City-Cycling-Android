@@ -1,5 +1,13 @@
 package edu.auburn.ppl.cyclecolumbus;
 
+/**
+ * Allows user to take a picture of the spot and take down a few quick notes
+ * Image uploaded to the server.
+ *
+ * @author Ken Streit, Auburn University
+ * @date February 4, 2015
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -44,8 +52,8 @@ public class NoteDetailActivity extends Activity {
 		Intent myIntent = getIntent();
 		noteType = myIntent.getIntExtra("noteType", -1);
 		noteid = myIntent.getLongExtra("noteid", -1);
-		Log.v("Jason", "Note ID in NoteDetail: " + noteid);
-		Log.v("Jason", "Note Type is: " + noteType);
+		Log.v("KENNY", "Note ID in NoteDetail: " + noteid);
+		Log.v("KENNY", "Note Type is: " + noteType);
 		isRecording = myIntent.getIntExtra("isRecording", -1);
 
 		noteDetails = (EditText) findViewById(R.id.editTextNoteDetail);
@@ -58,7 +66,7 @@ public class NoteDetailActivity extends Activity {
 		Button addPhotoButton = (Button) findViewById(R.id.addPhotoButton);
 		addPhotoButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Log.v("Jason", "Add Photo");
+				Log.v("KENNY", "Add Photo");
 				Intent cameraIntent = new Intent(
 						android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, CAMERA_REQUEST);
@@ -70,7 +78,7 @@ public class NoteDetailActivity extends Activity {
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
 			photo = (Bitmap) data.getExtras().get("data");
 			imageView.setImageBitmap(photo);
-			Log.v("Jason", "Image Photo: " + photo);
+			Log.v("KENNY", "Image Photo: " + photo);
 		}
 	}
 
@@ -88,7 +96,7 @@ public class NoteDetailActivity extends Activity {
 
 		SimpleDateFormat sdfStart = new SimpleDateFormat("MMMM d, y  HH:mm");
 		String fancyStartTime = sdfStart.format(note.startTime);
-		Log.v("Jason", "Start: " + fancyStartTime);
+		Log.v("KENNY", "Start: " + fancyStartTime);
 
 		SimpleDateFormat sdfStart2 = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
 		String date = sdfStart2.format(note.startTime);
@@ -127,7 +135,7 @@ public class NoteDetailActivity extends Activity {
 			// And, show the map!
 			xi.putExtra("shownote", note.noteid);
 			xi.putExtra("uploadNote", true);
-			Log.v("Jason", "Noteid: " + String.valueOf(note.noteid));
+			Log.v("KENNY", "Noteid: " + String.valueOf(note.noteid));
 			startActivity(xi);
 			overridePendingTransition(R.anim.slide_in_right,
 					R.anim.slide_out_left);

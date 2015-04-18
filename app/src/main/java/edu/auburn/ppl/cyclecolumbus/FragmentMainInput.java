@@ -44,8 +44,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		OnConnectionFailedListener, LocationListener,
 		OnMyLocationButtonClickListener {
 
-	public static final String ARG_SECTION_NUMBER = "section_number";
-
 	Intent fi;
 	TripData trip;
 	NoteData note;
@@ -89,7 +87,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Log.v("Jason", "Cycle: MainInput onCreateView");
+		Log.v("KENNY", "Cycle: MainInput onCreateView");
 
 		View rootView = inflater.inflate(R.layout.activity_main_input,
 				container, false);
@@ -117,8 +115,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		// This needs to block until the onServiceConnected (above) completes.
 		// Thus, we can check the recording status before continuing on.
 		getActivity().bindService(rService, sc, Context.BIND_AUTO_CREATE);
-
-		// Log.d("Jason", "Start2");
 
 		// And set up the record button
 		Button startButton = (Button) rootView.findViewById(R.id.buttonStart);
@@ -165,7 +161,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 
 					fi.putExtra("noteid", note.noteid);
 
-					Log.v("Jason", "Note ID in MainInput: " + note.noteid);
+					Log.v("KENNY", "Note ID in MainInput: " + note.noteid);
 
 					if (isRecording == true) {
 						fi.putExtra("isRecording", 1);
@@ -179,9 +175,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 
 					if (currentLocation != null) {
 						note.addPointNow(currentLocation, currentTime);
-
-						// Log.v("Jason", "Note ID: "+note);
-
 						startActivity(fi);
 						getActivity().overridePendingTransition(
 								R.anim.slide_in_right, R.anim.slide_out_left);
@@ -405,8 +398,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 	public void onResume() {
 		super.onResume();
 
-		Log.v("Jason", "Cycle: MainInput onResume");
-
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
@@ -435,7 +426,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 	@Override
 	public void onPause() {
 		super.onPause();
-		Log.v("Jason", "Cycle: MainInput onPause");
+		Log.v("KENNY", "Cycle: MainInput onPause");
 		// Background GPS.
 		if (timer != null)
 			timer.cancel();
@@ -447,7 +438,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		Log.v("Jason", "Cycle: MainInput onDestroyView");
+		Log.v("KENNY", "Cycle: MainInput onDestroyView");
 	}
 
 	private void setUpMapIfNeeded() {
@@ -481,8 +472,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 	public void onLocationChanged(Location location) {
 		// onMyLocationButtonClick();
 		currentLocation = location;
-
-		// Log.v("Jason", "Current Location: "+currentLocation);
 
 		if (zoomFlag == 1) {
 			LatLng myLocation;
@@ -525,8 +514,6 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 
 	@Override
 	public boolean onMyLocationButtonClick() {
-		// Toast.makeText(getActivity(), "MyLocation button clicked",
-		// Toast.LENGTH_SHORT).show();
 		// Return false so that we don't consume the event and the default
 		// behavior still occurs
 		// (the camera animates to the user's current position).

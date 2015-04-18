@@ -50,7 +50,7 @@ public class TripDetailActivity extends Activity {
 
 		SimpleDateFormat sdfStart = new SimpleDateFormat("MMMM d, y  HH:mm");
 		String fancyStartTime = sdfStart.format(trip.startTime);
-		Log.v("Jason", "Start: " + fancyStartTime);
+		Log.v("KENNY", "Start: " + fancyStartTime);
 
 		// "3.5 miles in 26 minutes"
 		SimpleDateFormat sdf = new SimpleDateFormat("m");
@@ -71,7 +71,7 @@ public class TripDetailActivity extends Activity {
 		// And, show the map!
 		xi.putExtra("showtrip", trip.tripid);
 		xi.putExtra("uploadTrip", true);
-		Log.v("Jason", "Tripid: " + String.valueOf(trip.tripid));
+		Log.v("KENNY", "Tripid: " + String.valueOf(trip.tripid));
 		startActivity(xi);
 		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 		TripDetailActivity.this.finish();

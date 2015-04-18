@@ -47,7 +47,7 @@ public class FragmentSavedTripsSection extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.activity_saved_trips, null);
 
-		Log.v("Jason", "Cycle: SavedTrips onCreateView");
+		Log.v("KENNY", "Cycle: SavedTrips onCreateView");
 
 		setHasOptionsMenu(true);
 
@@ -88,7 +88,7 @@ public class FragmentSavedTripsSection extends Fragment {
 		// may be called multiple times if the mode is invalidated.
 		@Override
 		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-			Log.v("Jason", "Prepare");
+			Log.v("KENNY", "Prepare");
 			saveMenuItemDelete = menu.getItem(0);
 			saveMenuItemDelete.setEnabled(false);
 			saveMenuItemUpload = menu.getItem(1);
@@ -100,7 +100,7 @@ public class FragmentSavedTripsSection extends Fragment {
 						* (allTrips.getInt(allTrips.getColumnIndex("status")) - 1);
 				if (flag == 0) {
 					storedID = allTrips.getLong(allTrips.getColumnIndex("_id"));
-					Log.v("Jason", "" + storedID);
+					Log.v("KENNY", "" + storedID);
 					break;
 				}
 			}
@@ -127,10 +127,6 @@ public class FragmentSavedTripsSection extends Fragment {
 				return true;
 			case R.id.action_upload_saved_trips:
 				// upload selected trips
-				// for (int i = 0; i < tripIdArray.size(); i++) {
-				// retryTripUpload(tripIdArray.get(i));
-				// }
-				// Log.v("Jason", "" + storedID);
 				retryTripUpload(storedID);
 				mode.finish(); // Action picked, so close the CAB
 				return true;
@@ -145,8 +141,6 @@ public class FragmentSavedTripsSection extends Fragment {
 			mActionMode = null;
 			tripIdArray.clear();
 			for (int i = 0; i < listSavedTrips.getCount(); i++) {
-				// Log.v("Jason", "Count" + listSavedTrips.getCount());
-				// Log.v("Jason", "Count" + listSavedTrips.getChildCount());
 				if (listSavedTrips.getChildCount() != 0) {
 					listSavedTrips.getChildAt(i).setBackgroundColor(
 							Color.parseColor("#80ffffff"));
@@ -194,8 +188,6 @@ public class FragmentSavedTripsSection extends Fragment {
 						// Toast.LENGTH_SHORT).show();
 						buildAlertMessageUnuploadedTripClicked(id);
 
-						// Log.v("Jason",
-						// ""+allTrips.getLong(allTrips.getColumnIndex("_id")));
 					}
 
 				} else {
@@ -274,20 +266,20 @@ public class FragmentSavedTripsSection extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		Log.v("Jason", "Cycle: SavedTrips onResume");
+		Log.v("KENNY", "Cycle: SavedTrips onResume");
 		populateTripList(listSavedTrips);
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		Log.v("Jason", "Cycle: SavedTrips onPause");
+		Log.v("KENNY", "Cycle: SavedTrips onPause");
 	}
 
 	@Override
 	public void onDestroyView() {
 		super.onDestroyView();
-		Log.v("Jason", "Cycle: SavedTrips onDestroyView");
+		Log.v("KENNY", "Cycle: SavedTrips onDestroyView");
 	}
 
 	/* Creates the menu items */

@@ -65,7 +65,7 @@ public class SavedTripsAdapter extends SimpleCursorAdapter {
 		sdfDuration.setTimeZone(TimeZone.getTimeZone("UTC"));
 		Double endTime = cursor.getDouble(cursor.getColumnIndex("endtime"));
 		String duration = sdfDuration.format(endTime - startTime);
-		Log.v("Jason", "Duration: " + duration);
+		Log.v("KENNY", "Duration: " + duration);
 
 		textViewInfo.setText(duration);
 
@@ -96,7 +96,7 @@ public class SavedTripsAdapter extends SimpleCursorAdapter {
 		}
 
 		int status = cursor.getInt(cursor.getColumnIndex("status"));
-		Log.v("Jason", "Status: " + status);
+		Log.v("KENNY", "Status: " + status);
 		
 		if (status == 0){
 			//textViewPurpose.setText("In Progress");

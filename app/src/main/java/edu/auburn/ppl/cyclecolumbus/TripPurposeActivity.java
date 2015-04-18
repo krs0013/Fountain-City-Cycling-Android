@@ -128,7 +128,7 @@ public class TripPurposeActivity extends Activity {
 				view.setBackgroundColor(Color.parseColor("#ff33b5e5"));
 				// view.setBackgroundDrawable(parent.getResources().getDrawable(R.drawable.bg_key));
 				purpose = values[position];
-				// Log.v("Jason", purpose);
+
 				((TextView) findViewById(R.id.textViewTripPurposeDesc))
 						.setText(Html.fromHtml(purpDescriptions.get(position)));
 				saveMenuItem.setEnabled(true);

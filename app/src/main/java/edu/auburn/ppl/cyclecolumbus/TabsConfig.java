@@ -49,7 +49,7 @@ public class TabsConfig extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs_config);
 
-		Log.v("Jason", "Cycle: TabsConfig onCreate");
+		Log.v("KENNY", "Cycle: TabsConfig onCreate");
 
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -216,19 +216,19 @@ public class TabsConfig extends FragmentActivity implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		Log.v("Jason", "Cycle: TabsConfig onResume");
+		Log.v("KENNY", "Cycle: TabsConfig onResume");
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		Log.v("Jason", "Cycle: TabsConfig onPause");
+		Log.v("KENNY", "Cycle: TabsConfig onPause");
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.v("Jason", "Cycle: TabsConfig onDestroy");
+		Log.v("KENNY", "Cycle: TabsConfig onDestroy");
 	}
 	
 	// 2.0 and above

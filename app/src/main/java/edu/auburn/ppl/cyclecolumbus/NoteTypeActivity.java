@@ -129,7 +129,6 @@ public class NoteTypeActivity extends Activity {
 				view.setBackgroundColor(Color.parseColor("#ff33b5e5"));
 				// view.setBackgroundDrawable(parent.getResources().getDrawable(R.drawable.bg_key));
 				noteType = position;
-				// Log.v("Jason", purpose);
 				((TextView) findViewById(R.id.textViewNoteTypeDesc))
 						.setText(Html.fromHtml(noteTypeDescriptions
 								.get(position)));
@@ -182,7 +181,7 @@ public class NoteTypeActivity extends Activity {
 
 			intentToNoteDetail.putExtra("noteid", noteid);
 
-			Log.v("Jason", "Note ID in NoteType: " + noteid);
+			Log.v("KENNY", "Note ID in NoteType: " + noteid);
 
 			if (isRecording == 1) {
 				intentToNoteDetail.putExtra("isRecording", 1);
@@ -209,7 +208,7 @@ public class NoteTypeActivity extends Activity {
 
 		// Cancel
 		NoteData note = NoteData.fetchNote(NoteTypeActivity.this, noteid);
-		Log.v("Jason", "Note id: " + noteid);
+		Log.v("KENNY", "Note id: " + noteid);
 		note.dropNote();
 
 		NoteTypeActivity.this.finish();
@@ -228,7 +227,7 @@ public class NoteTypeActivity extends Activity {
 
 			// Cancel
 			NoteData note = NoteData.fetchNote(NoteTypeActivity.this, noteid);
-			Log.v("Jason", "Note id: " + noteid);
+			Log.v("KENNY", "Note id: " + noteid);
 			note.dropNote();
 
 			NoteTypeActivity.this.finish();

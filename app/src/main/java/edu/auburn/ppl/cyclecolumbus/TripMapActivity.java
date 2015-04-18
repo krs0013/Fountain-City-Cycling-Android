@@ -98,12 +98,12 @@ public class TripMapActivity extends Activity {
 
             Log.v("KENNY", "Trip ID: " + tripid);
 
-			Log.v("Jason", gpspoints.toString());
+			Log.v("KENNY", gpspoints.toString());
 
-			Log.v("Jason", String.valueOf(trip.startpoint.latitude * 1E-6));
-			Log.v("Jason", String.valueOf(trip.startpoint.longitude * 1E-6));
-			Log.v("Jason", String.valueOf(trip.endpoint.latitude * 1E-6));
-			Log.v("Jason", String.valueOf(trip.endpoint.longitude * 1E-6));
+			Log.v("KENNY", String.valueOf(trip.startpoint.latitude * 1E-6));
+			Log.v("KENNY", String.valueOf(trip.startpoint.longitude * 1E-6));
+			Log.v("KENNY", String.valueOf(trip.endpoint.latitude * 1E-6));
+			Log.v("KENNY", String.valueOf(trip.endpoint.longitude * 1E-6));
 
 			if (trip.startpoint != null) {
 				map.addMarker(new MarkerOptions()
@@ -131,7 +131,7 @@ public class TripMapActivity extends Activity {
 			PolylineOptions rectOptions = new PolylineOptions();
 			rectOptions.geodesic(true).color(Color.BLUE);
 
-			Log.v("Jason", String.valueOf(gpspoints.size()));
+			Log.v("KENNY", String.valueOf(gpspoints.size()));
 
 			for (int i = 0; i < gpspoints.size(); i++) {
 				LatLng point = new LatLng(gpspoints.get(i).latitude * 1E-6,

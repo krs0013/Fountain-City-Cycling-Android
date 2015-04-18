@@ -231,7 +231,7 @@ public class RecordingService extends Service implements LocationListener {
 				updateTripStats(loc);
 				boolean rtn = trip.addPointNow(loc, currentTime,
 						distanceTraveled);
-				Log.v("Jason", "Distance Traveled: " + distanceTraveled);
+				Log.v("KENNY", "Distance Traveled: " + distanceTraveled);
 				if (!rtn) {
 					// Log.e("FAIL", "Couldn't write to DB");
 				}
@@ -345,7 +345,7 @@ public class RecordingService extends Service implements LocationListener {
 
 	void notifyListeners() {
 		if (recordActivity != null) {
-			Log.v("Jason", "Distance Traveled: hahaha");
+			Log.v("KENNY", "Distance Traveled: hahaha");
 			recordActivity.updateStatus(trip.numpoints, distanceTraveled,
 					curSpeed, maxSpeed);
 		}

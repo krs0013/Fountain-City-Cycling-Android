@@ -97,8 +97,8 @@ public class NoteMapActivity extends Activity {
 				}
 			}
 
-			Log.v("Jason", "Image Photo: " + note.noteimagedata);
-			Log.v("Jason", "Image Photo: " + note.noteimageurl);
+			Log.v("KENNY", "Image Photo: " + note.noteimagedata);
+			Log.v("KENNY", "Image Photo: " + note.noteimageurl);
 
 			if (note.noteimageurl.equals("")) {
 			} else {
@@ -111,7 +111,7 @@ public class NoteMapActivity extends Activity {
 					imageView.setScaleType(ImageView.ScaleType.FIT_START);
 				}
 				imageView.setImageBitmap(photo);
-				Log.v("Jason", "Image Photo: " + photo);
+				Log.v("KENNY", "Image Photo: " + photo);
 			}
 
 		} catch (Exception e) {
