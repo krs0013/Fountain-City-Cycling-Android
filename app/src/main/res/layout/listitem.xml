@@ -5,6 +5,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/leader_cell"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="12dp">
@@ -14,7 +15,9 @@
             android:id="@+id/user_id"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Test PID"/>
+            android:paddingLeft="@dimen/body_text_medium"
+            android:text="Test ID"
+            android:textColor="@android:color/black"/>
 
         <!-- Name Label -->
         <TextView
@@ -24,10 +27,11 @@
             android:layout_alignLeft="@id/user_id"
             android:layout_below="@id/user_id"
             android:paddingTop="6sp"
-            android:paddingLeft="40sp"
+            android:paddingLeft="60sp"
             android:textSize="17dp"
+            android:text="Test Score"
             android:textStyle="bold"
-            android:text="Test Score" />
+            android:textColor="@android:color/black" />
     </RelativeLayout>
 
 </LinearLayout>

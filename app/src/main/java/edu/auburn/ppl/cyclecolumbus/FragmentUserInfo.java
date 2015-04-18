@@ -234,7 +234,7 @@ public class FragmentUserInfo extends Fragment {
                 JsonStorage jsonStorage = new JsonStorage(getActivity());
                 try {
                     JSONObject json = new JSONObject(); // Create new json object
-                    json.put("agree", true);            // Put a boolean into object
+                    json.put("agree", "Agree");         // Put a boolean into object
                     jsonStorage.writeJSON(json);        // Write it to internal memory
                     Toast.makeText(getActivity(), "Agreement Saved.", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
@@ -251,7 +251,7 @@ public class FragmentUserInfo extends Fragment {
                 JsonStorage jsonStorage = new JsonStorage(getActivity());
                 try {
                     JSONObject json = new JSONObject(); // Create new json object
-                    json.put("agree", false);           // Put a boolean into object
+                    json.put("agree", "Disagree");      // Put a boolean into object
                     jsonStorage.writeJSON(json);        // Write it to internal memory
                     Toast.makeText(getActivity(), "Disagreement Saved.", Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {

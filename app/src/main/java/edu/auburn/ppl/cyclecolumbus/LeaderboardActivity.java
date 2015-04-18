@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -41,7 +40,7 @@ public class LeaderboardActivity extends ListActivity {
     ArrayList<HashMap<String, String>> leaderList;
 
     // url to get all products list
-    private static String url_all_products = "http://FountainCityCycling.org/leaderboard_request/";
+    private static String url_leaderboard = "http://FountainCityCycling.org/leaderboard_request/";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -88,13 +87,20 @@ public class LeaderboardActivity extends ListActivity {
         whatsMyId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Your Rider ID is: " + user_id, Toast.LENGTH_SHORT).show();
+                if (user_id.equals("")) {
+                    Toast.makeText(getApplicationContext(),
+                            "You must record a trip to be on the Leader Board", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Your Rider ID is: " + user_id, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     //Pass the name to the JSON method and create a JSON object from the return
     public class LeaderboardAsync extends AsyncTask<String, String, String> {
+
+        String[] array = {};
 
         /**
          * Before starting background thread Show Progress Dialog
@@ -113,7 +119,7 @@ public class LeaderboardActivity extends ListActivity {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("tag", "leaderBoard"));
             // getting JSON string from URL
-            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+            JSONObject json = jParser.makeHttpRequest(url_leaderboard, "GET", params);
 
             try {
                 // Check your log cat for JSON reponse
@@ -131,8 +137,8 @@ public class LeaderboardActivity extends ListActivity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String id = "Rider ID: " + c.getString(TAG_USER_ID);
-                        String score = "Score: " + c.getString(TAG_SCORE);
+                        String id = c.getString(TAG_USER_ID);
+                        String score = c.getString(TAG_SCORE);
 
                         String tempDeviceID = c.getString(TAG_DEVICE);
 
@@ -173,13 +179,13 @@ public class LeaderboardActivity extends ListActivity {
                     /**
                      * Updating parsed JSON data into ListView
                      * */
-                    adapter = new SimpleAdapter(
-                            LeaderboardActivity.this, leaderList,
-                            R.layout.listitem, new String[]{TAG_USER_ID,
-                            TAG_SCORE},
-                            new int[]{R.id.user_id, R.id.score});
+//                    adapter = new SimpleAdapter(
+//                            LeaderboardActivity.this, leaderList,
+//                            R.layout.listitem, new String[]{TAG_USER_ID,
+//                            TAG_SCORE},
+//                            new int[]{R.id.user_id, R.id.score});
                     // updating listview
-                    setListAdapter(adapter);
+                    setListAdapter(new LeaderboardAdapter(getApplicationContext(), leaderList));
                 }
             });
 

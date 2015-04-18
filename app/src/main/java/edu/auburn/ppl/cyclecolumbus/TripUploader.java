@@ -101,7 +101,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
     private String co2 = "";
     private String distance = "";
     private String avgCost = "";
-    private boolean didAgree = false;
+    private String agreement = "Disagree";
 
     public TripUploader(Context ctx) {
         super();
@@ -301,8 +301,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         String purpose = tripData.get(1);
         String startTime = tripData.get(2);
         // String endTime = tripData.get(3);
-        if (didAgree) Log.d("KENNY", "USER AGREEMENT: TRUE");
-        else Log.d("KENNY", "USER AGREEMENT: FALSE");
+        Log.d("KENNY", "USER AGREEMENT: " + agreement);
 
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         nameValuePairs.add(new BasicNameValuePair("coords", coords.toString()));
@@ -551,24 +550,23 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         distance = String.valueOf(dfDistance.format(dist));
     }
 
-    private boolean getUserAgreement() {
+    private String getUserAgreement() {
 
         // See if user agreed to contest terms
         JsonStorage jsonStorage = new JsonStorage(mCtx);
         try {
             String stringJSON = jsonStorage.readJSON();         // Get the string stored in text file
             JSONObject jsonObject = new JSONObject(stringJSON); // Convert it to JSON form
-            didAgree = jsonObject.getBoolean("agree");
-            if (didAgree) Log.d("KENNY", "Read JSON, the user DID AGREE");
-            else Log.d("KENNY", "Read JSON, the user did NOT AGREE");
+            agreement = jsonObject.getString("agree");
+            Log.d("KENNY", "Read JSON, the user " + agreement);
         } catch (IOException e) {
             Log.d("KENNY", "Something went wrong in I/O");
             e.printStackTrace();
         } catch (JSONException ej) {
-            Log.d("KENNY", "Something went wrong with JSON, set didAgree to \"false\"");
-            didAgree = false;
+            Log.d("KENNY", "Something went wrong with JSON, set agreement to \"false\"");
+            agreement = "Disagree";
             ej.printStackTrace();
         }
-        return didAgree;
+        return agreement;
     }
 }

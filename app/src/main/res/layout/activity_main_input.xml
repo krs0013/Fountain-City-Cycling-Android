@@ -129,14 +129,6 @@
             android:orientation="horizontal"
             android:paddingTop="75dp" >
 
-            <ImageView
-                android:id="@+id/leaderboard_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:paddingLeft="25dp"
-                android:src="@drawable/leaderboard_icon"/>
-
             <Button
                 android:id="@+id/buttonNoteThis"
                 android:layout_width="140dp"
@@ -148,23 +140,35 @@
                 android:text="Note this..." />
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-            android:gravity="center|bottom"
-            android:orientation="vertical" >
+            android:orientation="horizontal"
+            android:layout_gravity="bottom" >
+
+            <ImageView
+                android:id="@+id/leaderboard_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="25dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/leaderboard_icon"/>
 
             <Button
                 android:id="@+id/buttonStart"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:background="#4d7d36"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:onClick="OnSave"
                 android:textColor="#ffffff"
                 android:textStyle="bold" 
                 android:text="Start" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </FrameLayout>
