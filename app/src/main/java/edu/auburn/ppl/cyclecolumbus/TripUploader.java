@@ -293,6 +293,7 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
 
     /******************************************************************************************
      * Generates information to send to the server
+     * Server looks for name-value pairs
      ******************************************************************************************
      * @param tripId Unique ID for each trip sent.  Unique to ALL RIDERS
      * @return Returns the data the server reads and stores
