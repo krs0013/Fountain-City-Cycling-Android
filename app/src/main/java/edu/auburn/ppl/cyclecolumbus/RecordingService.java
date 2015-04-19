@@ -105,6 +105,9 @@ public class RecordingService extends Service implements LocationListener {
 		}
 	}
 
+    /******************************************************************************************
+     * This is the class that makes the app do all recording
+     ******************************************************************************************/
 	public class MyServiceBinder extends Binder implements IRecordService {
 		public int getState() {
 			return state;
@@ -149,6 +152,11 @@ public class RecordingService extends Service implements LocationListener {
 
 	// ---end SERVICE methods -------------------------
 
+    /******************************************************************************************
+     * Records the trip
+     ******************************************************************************************
+     * @param trip This is the trip to be recorded
+     ******************************************************************************************/
 	public void startRecording(TripData trip) {
 		this.state = STATE_RECORDING;
 		this.trip = trip;
@@ -256,6 +264,10 @@ public class RecordingService extends Service implements LocationListener {
 
 	// END LocationListener implementation:
 
+    /******************************************************************************************
+     * Makes the wheel icon appear in status bar at top of phone and lock screen
+     * Used to let user know they are still recording
+     ******************************************************************************************/
 	public void remindUser() {
 		soundpool.play(bikebell, 1.0f, 1.0f, 1, 0, 1.0f);
 
@@ -285,6 +297,10 @@ public class RecordingService extends Service implements LocationListener {
 		mNotificationManager.notify(RECORDING_ID, notification);
 	}
 
+    /******************************************************************************************
+     * Sets the wheel icon in status bar when recording
+     * User can click on it and have it go to the current recording
+     ******************************************************************************************/
 	private void setNotification() {
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		int icon = R.drawable.wheelicon;
@@ -314,6 +330,9 @@ public class RecordingService extends Service implements LocationListener {
 		mNotificationManager.notify(RECORDING_ID, notification);
 	}
 
+    /******************************************************************************************
+     * Clears the wheel icon when the trip is done
+     ******************************************************************************************/
 	private void clearNotifications() {
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.cancelAll();
@@ -345,7 +364,7 @@ public class RecordingService extends Service implements LocationListener {
 
 	void notifyListeners() {
 		if (recordActivity != null) {
-			Log.v("KENNY", "Distance Traveled: hahaha");
+			Log.v("KENNY", "Distance Traveled: " + distanceTraveled);
 			recordActivity.updateStatus(trip.numpoints, distanceTraveled,
 					curSpeed, maxSpeed);
 		}

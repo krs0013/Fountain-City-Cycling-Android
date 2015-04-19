@@ -146,27 +146,26 @@ public class DbAdapter {
 		}
 	}
 
-	/**
+	/******************************************************************************************
 	 * Constructor - takes the context to allow the database to be
 	 * opened/created
-	 * 
-	 * @param ctx
-	 *            the Context within which to work
-	 */
+	 ******************************************************************************************
+	 * @param ctx the Context within which to work
+	 ******************************************************************************************/
 	public DbAdapter(Context ctx) {
 		this.mCtx = ctx;
 	}
 
-	/**
+	/******************************************************************************************
 	 * Open the database. If it cannot be opened, try to create a new instance
 	 * of the database. If it cannot be created, throw an exception to signal
 	 * the failure
-	 * 
+	 ******************************************************************************************
 	 * @return this (self reference, allowing this to be chained in an
 	 *         initialization call)
 	 * @throws android.database.SQLException
 	 *             if the database could be neither opened or created
-	 */
+	 ******************************************************************************************/
 	public DbAdapter open() throws SQLException {
 		mDbHelper = new DatabaseHelper(mCtx);
 		mDb = mDbHelper.getWritableDatabase();
@@ -179,12 +178,23 @@ public class DbAdapter {
 		return this;
 	}
 
+    /******************************************************************************************
+     * Closes database after reading or writing
+     ******************************************************************************************/
 	public void close() {
 		mDbHelper.close();
 	}
 
 	// #### Coordinate table methods ####
 
+    /******************************************************************************************
+     * Adds coordinate during a trip
+     * Called a lot...
+     ******************************************************************************************
+     * @param tripid Unique trip ID to add coord to
+     * @param pt
+     * @return
+     ******************************************************************************************/
 	public boolean addCoordToTrip(long tripid, CyclePoint pt) {
 		boolean success = true;
 
@@ -235,11 +245,11 @@ public class DbAdapter {
 
 	// #### Trip table methods ####
 
-	/**
+	/******************************************************************************************
 	 * Create a new trip using the data provided. If the trip is successfully
 	 * created return the new rowId for that trip, otherwise return a -1 to
 	 * indicate failure.
-	 */
+	 ******************************************************************************************/
 	public long createTrip(String purp, double starttime, String fancystart,
 			String note) {
 		ContentValues initialValues = new ContentValues();
@@ -256,22 +266,22 @@ public class DbAdapter {
 		return createTrip("", System.currentTimeMillis(), "", "");
 	}
 
-	/**
+	/******************************************************************************************
 	 * Delete the trip with the given rowId
-	 * 
+	 ******************************************************************************************
 	 * @param rowId
 	 *            id of note to delete
 	 * @return true if deleted, false otherwise
-	 */
+	 ******************************************************************************************/
 	public boolean deleteTrip(long rowId) {
 		return mDb.delete(DATA_TABLE_TRIPS, K_TRIP_ROWID + "=" + rowId, null) > 0;
 	}
 
-	/**
+	/******************************************************************************************
 	 * Return a Cursor over the list of all notes in the database
-	 * 
+	 ******************************************************************************************
 	 * @return Cursor over all trips
-	 */
+	 ******************************************************************************************/
 	public Cursor fetchAllTrips() {
 		Cursor c = mDb.query(DATA_TABLE_TRIPS, new String[] { K_TRIP_ROWID,
 				K_TRIP_PURP, K_TRIP_START, K_TRIP_FANCYSTART, K_TRIP_NOTE,
@@ -318,15 +328,15 @@ public class DbAdapter {
 		return badTrips;
 	}
 
-	/**
+	/******************************************************************************************
 	 * Return a Cursor positioned at the trip that matches the given rowId
-	 * 
+	 ******************************************************************************************
 	 * @param rowId
 	 *            id of trip to retrieve
 	 * @return Cursor positioned to matching trip, if found
 	 * @throws android.database.SQLException
 	 *             if trip could not be found/retrieved
-	 */
+	 ******************************************************************************************/
 	public Cursor fetchTrip(long rowId) throws SQLException {
 		Cursor mCursor = mDb.query(true, DATA_TABLE_TRIPS, new String[] {
 				K_TRIP_ROWID, K_TRIP_PURP, K_TRIP_START, K_TRIP_FANCYSTART,
@@ -372,12 +382,11 @@ public class DbAdapter {
 
 	// #### Notes table methods ####
 
-	/**
+	/******************************************************************************************
 	 * Create a new note using the data provided. If the note is successfully
 	 * created return the new rowId for that note, otherwise return a -1 to
 	 * indicate failure.
-	 */
-
+	 ******************************************************************************************/
 	public long createNote(int noteType, double noterecorded,
 			String notefancystart, String notedetails, String noteimageurl,
 			byte[] noteimagedata) {
@@ -404,22 +413,22 @@ public class DbAdapter {
 		return createNote(-1, System.currentTimeMillis(), "", "", "", null);
 	}
 
-	/**
+	/******************************************************************************************
 	 * Delete the note with the given rowId
-	 * 
+	 ******************************************************************************************
 	 * @param rowId
 	 *            id of note to delete
 	 * @return true if deleted, false otherwise
-	 */
+	 ******************************************************************************************/
 	public boolean deleteNote(long rowId) {
 		return mDb.delete(DATA_TABLE_NOTES, K_NOTE_ROWID + "=" + rowId, null) > 0;
 	}
 
-	/**
+	/******************************************************************************************
 	 * Return a Cursor over the list of all notes in the database
-	 * 
+	 ******************************************************************************************
 	 * @return Cursor over all notes
-	 */
+	 ******************************************************************************************/
 	public Cursor fetchAllNotes() {
 		Cursor c = mDb.query(DATA_TABLE_NOTES,
 				new String[] { K_NOTE_ROWID, K_NOTE_TYPE, K_NOTE_RECORDED,
@@ -466,15 +475,15 @@ public class DbAdapter {
 		return badNotes;
 	}
 
-	/**
+	/******************************************************************************************
 	 * Return a Cursor positioned at the note that matches the given rowId
-	 * 
+	 ******************************************************************************************
 	 * @param rowId
 	 *            id of note to retrieve
 	 * @return Cursor positioned to matching note, if found
 	 * @throws android.database.SQLException
 	 *             if note could not be found/retrieved
-	 */
+	 ******************************************************************************************/
 	public Cursor fetchNote(long rowId) throws SQLException {
 		Cursor mCursor = mDb.query(true, DATA_TABLE_NOTES,
 				new String[] { K_NOTE_ROWID, K_NOTE_TYPE, K_NOTE_RECORDED,

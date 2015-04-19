@@ -35,7 +35,10 @@ public class NoteTypeActivity extends Activity {
 
 	private MenuItem saveMenuItem;
 
-	// Set up the purpose buttons to be one-click only
+    /******************************************************************************************
+     * Text appears under a note reason and explains what it is for
+     * This is one-click only
+     ******************************************************************************************/
 	void prepareNoteTypeButtons() {
 		// Note Issue
 		noteTypeDescriptions

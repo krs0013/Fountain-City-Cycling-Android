@@ -69,6 +69,9 @@ public class FragmentSavedNotesSection extends Fragment {
 		return rootView;
 	}
 
+    /******************************************************************************************
+     * Used when the user is trying to edit the note list
+     ******************************************************************************************/
 	private ActionMode.Callback mActionModeCallbackNote = new ActionMode.Callback() {
 
 		// Called when the action mode is created; startActionMode() was called
@@ -146,6 +149,11 @@ public class FragmentSavedNotesSection extends Fragment {
 		}
 	};
 
+    /******************************************************************************************
+     * Generates the list of notes that the user has made
+     ******************************************************************************************
+     * @param lv ListView with the notes
+     ******************************************************************************************/
 	void populateNoteList(ListView lv) {
 		// Get list from the real phone database. W00t!
 		final DbAdapter mDb = new DbAdapter(getActivity());
@@ -231,6 +239,12 @@ public class FragmentSavedNotesSection extends Fragment {
 		alert.show();
 	}
 
+    /******************************************************************************************
+     * If note did not upload, the user can try again
+     * It still is saved in-app, but did not previously go to the external database
+     ******************************************************************************************
+     * @param noteId Unique ID to retry upload
+     ******************************************************************************************/
 	private void retryNoteUpload(long noteId) {
 		NoteUploader uploader = new NoteUploader(getActivity());
 		FragmentSavedNotesSection f3 = (FragmentSavedNotesSection) getActivity()
@@ -242,6 +256,12 @@ public class FragmentSavedNotesSection extends Fragment {
 		uploader.execute();
 	}
 
+    /******************************************************************************************
+     * Executed when the user has it highlighted and selects delete
+     * Can delete multiple notes
+     ******************************************************************************************
+     * @param noteId Unique note ID to delte
+     ******************************************************************************************/
 	private void deleteNote(long noteId) {
 		DbAdapter mDbHelper = new DbAdapter(getActivity());
 		mDbHelper.open();

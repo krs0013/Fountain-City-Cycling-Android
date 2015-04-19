@@ -108,6 +108,13 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         this.mDb = new DbAdapter(this.mCtx);
     }
 
+    /******************************************************************************************
+     * Gets each coordinate that was set during a trip and the info that goes along with it.
+     ******************************************************************************************
+     * @param tripId Unique trip ID
+     * @return JSONObject representing all of the points set during trip
+     * @throws JSONException
+     ******************************************************************************************/
     private JSONObject getCoordsJSON(long tripId) throws JSONException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -161,6 +168,12 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return tripCoords;
     }
 
+    /******************************************************************************************
+     * Gets all of the information the user filled out on the settings tab
+     ******************************************************************************************
+     * @return Returns the JSONObject form of the info the user filled out
+     * @throws JSONException
+     ******************************************************************************************/
     private JSONObject getUserJSON() throws JSONException {
         JSONObject user = new JSONObject();
         Map<String, Integer> fieldMap = new HashMap<String, Integer>();
@@ -201,6 +214,12 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return user;
     }
 
+    /******************************************************************************************
+     * Puts the data from a trip in database into vector
+     ******************************************************************************************
+     * @param tripId Unique ID of each trip
+     * @return Vector of the trip
+     ******************************************************************************************/
     private Vector<String> getTripData(long tripId) {
         Vector<String> tripData = new Vector<String>();
         mDb.openReadOnly();
@@ -228,6 +247,12 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return tripData;
     }
 
+    /******************************************************************************************
+     * Gets the unique app device ID
+     * Since server looks for length 32 (to match iOS), add androidDeviceId to it
+     ******************************************************************************************
+     * @return String form of device id
+     ******************************************************************************************/
     public String getDeviceId() {
         String androidId = System.getString(this.mCtx.getContentResolver(),
                 System.ANDROID_ID);
@@ -252,6 +277,11 @@ public class TripUploader extends AsyncTask<Long, Integer, Boolean> {
         return deviceId;
     }
 
+    /******************************************************************************************
+     * Retrieves the app version of the phone
+     ******************************************************************************************
+     * @return app version
+     ******************************************************************************************/
     public String getAppVersion() {
         String versionName = "";
         int versionCode = 0;

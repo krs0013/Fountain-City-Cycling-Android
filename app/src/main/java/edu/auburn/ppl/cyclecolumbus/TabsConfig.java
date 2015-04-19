@@ -1,5 +1,12 @@
 package edu.auburn.ppl.cyclecolumbus;
 
+/**
+ * This is the main class that hosts all of the fragments
+ * Tells app what to do when back button is pressed or changed tabs
+ *
+ * @author Ken Streit, Auburn University
+ */
+
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
@@ -36,13 +43,13 @@ public class TabsConfig extends FragmentActivity implements
 	 */
 	ViewPager mViewPager;
 
-	Fragment fragment1;
+	Fragment fragment1; // Record
 
-	Fragment fragment2;
+	Fragment fragment2; // Trips
 
-	Fragment fragment3;
+	Fragment fragment3; // Notes
 
-	Fragment fragment4;
+	Fragment fragment4; // Settings
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +105,17 @@ public class TabsConfig extends FragmentActivity implements
         //mViewPager.canScrollHorizontally(1);
 	}
 
+    /******************************************************************************************
+     * Responds each time the user clicks a tab
+     ******************************************************************************************
+     * @param tab This is the tab the user clicked
+     * @param fragmentTransaction
+     ******************************************************************************************/
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-		// When the given tab is selected, switch to the corresponding page in
-		// the ViewPager.
-		// Toast.makeText(this, "TabSelected", Toast.LENGTH_LONG).show();
+
+		// When the given tab is selected, switch to the corresponding page in the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
 		final ActionBar actionBar = getActionBar();
 		switch (tab.getPosition()) {
@@ -164,10 +176,10 @@ public class TabsConfig extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 	}
 
-	/**
-	 * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
-	 * one of the sections/tabs/pages.
-	 */
+	/*******************************************************************************************
+	 * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment
+     * corresponding to one of the sections/tabs/pages.
+	 ******************************************************************************************/
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
@@ -232,6 +244,11 @@ public class TabsConfig extends FragmentActivity implements
 	}
 	
 	// 2.0 and above
+
+    /******************************************************************************************
+     * Many users use the back button on phone, but it will normally exit the app
+     * This makes sure that is the user's intention
+     ******************************************************************************************/
 	@Override
 	public void onBackPressed() {
         new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Exit")

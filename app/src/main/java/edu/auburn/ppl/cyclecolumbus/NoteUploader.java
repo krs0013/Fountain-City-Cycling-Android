@@ -75,12 +75,20 @@ public class NoteUploader extends AsyncTask<Long, Integer, Boolean> {
 
 	String boundary = "cycle*******notedata*******columbus";
 
+    /* Constructor */
 	public NoteUploader(Context ctx) {
 		super();
 		this.mCtx = ctx;
 		this.mDb = new DbAdapter(this.mCtx);
 	}
 
+    /******************************************************************************************
+     * Generates JSONObject form of a note to be uploaded
+     ******************************************************************************************
+     * @param noteId Unique note ID to be uploaded
+     * @return JSONObject of the note
+     * @throws JSONException
+     ******************************************************************************************/
 	private JSONObject getNoteJSON(long noteId) throws JSONException {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -131,6 +139,12 @@ public class NoteUploader extends AsyncTask<Long, Integer, Boolean> {
 		return note;
 	}
 
+    /******************************************************************************************
+     * Generates a length 32 string that is the device ID
+     * Must be 32 to match iOS because server looks for length 32
+     ******************************************************************************************
+     * @return String form of the device ID
+     ******************************************************************************************/
 	public String getDeviceId() {
 		String androidId = System.getString(this.mCtx.getContentResolver(),
 				System.ANDROID_ID);
@@ -155,6 +169,12 @@ public class NoteUploader extends AsyncTask<Long, Integer, Boolean> {
 		return deviceId;
 	}
 
+    /******************************************************************************************
+     * Uploads the note to the server
+     ******************************************************************************************
+     * @param currentNoteId Unique note ID to be uploaded
+     * @return True if uploaded, false if not
+     ******************************************************************************************/
 	boolean uploadOneNote(long currentNoteId) {
 		boolean result = false;
 		final String postUrl = "http://FountainCityCycling.org/post/";
@@ -214,6 +234,8 @@ public class NoteUploader extends AsyncTask<Long, Integer, Boolean> {
 					+ serverResponseCode);
             responseMessage = serverResponseMessage;
             responseCode = serverResponseCode;
+
+            // 200 - 202 means successfully went to server and uploaded
 			if (serverResponseCode == 200 || serverResponseCode == 201 || serverResponseCode == 202) {
 				mDb.open();
 				mDb.updateNoteStatus(currentNoteId, NoteData.STATUS_SENT);

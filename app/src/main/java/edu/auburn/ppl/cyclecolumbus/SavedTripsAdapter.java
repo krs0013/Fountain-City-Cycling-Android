@@ -29,6 +29,14 @@ public class SavedTripsAdapter extends SimpleCursorAdapter {
 		this.cursor = c;
 	}
 
+    /******************************************************************************************
+     * Used as an adapter to see all of your trips you have taken
+     ******************************************************************************************
+     * @param position Will iterate through to fill each trip
+     * @param convertView
+     * @param parent
+     * @return
+     ******************************************************************************************/
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context

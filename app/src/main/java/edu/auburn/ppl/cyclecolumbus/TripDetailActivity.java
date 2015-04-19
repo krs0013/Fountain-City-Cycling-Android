@@ -42,6 +42,13 @@ public class TripDetailActivity extends Activity {
 
 	// submit btn is only activated after the service.finishedRecording() is
 	// completed.
+
+    /******************************************************************************************
+     * This is the submit button that officially sends all the information
+     * It is only activated AFTER the service.finishedRecording() is completed
+     ******************************************************************************************
+     * @param notesToUpload Optional notes that may or may not have been entered.
+     ******************************************************************************************/
 	void submit(String notesToUpload) {
 		final Intent xi = new Intent(this, TripMapActivity.class);
 
@@ -78,6 +85,9 @@ public class TripDetailActivity extends Activity {
 
 	}
 
+    /******************************************************************************************
+     * Stops the recording
+     ******************************************************************************************/
 	void finishRecording() {
 		Intent rService = new Intent(this, RecordingService.class);
 		ServiceConnection sc = new ServiceConnection() {

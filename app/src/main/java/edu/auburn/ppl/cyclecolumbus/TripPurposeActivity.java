@@ -142,6 +142,9 @@ public class TripPurposeActivity extends Activity {
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 	}
 
+    /******************************************************************************************
+     * Disregard the current recording
+     ******************************************************************************************/
 	void cancelRecording() {
 		Intent rService = new Intent(this, RecordingService.class);
 		ServiceConnection sc = new ServiceConnection() {
@@ -158,7 +161,12 @@ public class TripPurposeActivity extends Activity {
 		bindService(rService, sc, Context.BIND_AUTO_CREATE);
 	}
 
-	/* Creates the menu items */
+    /******************************************************************************************
+     * Creates the buttons on the actionbar using specific menu
+     ******************************************************************************************
+     * @param menu This is the menu used
+     * @return Boolean if it is set up or not
+     ******************************************************************************************/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu items for use in the action bar
@@ -169,7 +177,12 @@ public class TripPurposeActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	/* Handles item selections */
+    /******************************************************************************************
+     * Handles the selections of the buttons on the ActionBar menu
+     ******************************************************************************************
+     * @param item This is the item that was clicked
+     * @return Returns true if it executed properly
+     ******************************************************************************************/
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items

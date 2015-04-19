@@ -116,7 +116,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		// Thus, we can check the recording status before continuing on.
 		getActivity().bindService(rService, sc, Context.BIND_AUTO_CREATE);
 
-		// And set up the record button
+		/* Starts recording a trip when this is clicked */
 		Button startButton = (Button) rootView.findViewById(R.id.buttonStart);
 		startButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -137,6 +137,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 			}
 		});
 
+        /* Leaderboard button that will start new activity if clicked */
         ImageView leaderboard = (ImageView) rootView.findViewById(R.id.leaderboard_icon);
         leaderboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +147,7 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
             }
         });
 
+        /* Note button */
 		Button noteThisButton = (Button) rootView
 				.findViewById(R.id.buttonNoteThis);
 		noteThisButton.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +201,15 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		return rootView;
 	}
 
+    /******************************************************************************************
+     * Gets the new status of a trip
+     * Parameters are the list of new things to upload and display
+     ******************************************************************************************
+     * @param points
+     * @param distance
+     * @param spdCurrent
+     * @param spdMax
+     ******************************************************************************************/
 	public void updateStatus(int points, float distance, float spdCurrent,
 			float spdMax) {
 		this.curDistance = distance;
@@ -209,6 +220,9 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		txtDistance.setText(String.format("%1.1f miles", miles));
 	}
 
+    /******************************************************************************************
+     * Stop recording a trip
+     ******************************************************************************************/
 	void cancelRecording() {
 		final Button startButton = (Button) getActivity().findViewById(
 				R.id.buttonStart);
@@ -241,6 +255,9 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		txtCurSpeed.setText("0.0 mph");
 	}
 
+    /******************************************************************************************
+     * Begin recording a trip (not resume)
+     ******************************************************************************************/
 	void startRecording() {
 		// Query the RecordingService to figure out what to do.
 		final Button startButton = (Button) getActivity().findViewById(
@@ -282,6 +299,10 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		isRecording = true;
 	}
 
+    /******************************************************************************************
+     * Shown to user if they try to record a trip and don't allow GPS
+     * Obviously they can't record a trip with no GPS...
+     ******************************************************************************************/
 	private void buildAlertMessageNoGps() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(
 				getActivity());
@@ -314,6 +335,9 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		alert.show();
 	}
 
+    /******************************************************************************************
+     * Message shown to user when they choose 'Save' button after recording
+     ******************************************************************************************/
 	private void buildAlertMessageSaveClicked() {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(
 				getActivity());
@@ -380,6 +404,9 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		alert.show();
 	}
 
+    /******************************************************************************************
+     * Updates the timer that is shown to the user
+     ******************************************************************************************/
 	void updateTimer() {
 		if (trip != null && isRecording) {
 			double dd = System.currentTimeMillis() - trip.startTime
@@ -392,8 +419,10 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		}
 	}
 
-	// onResume is called whenever this activity comes to foreground.
-	// Use a timer to update the trip duration.
+    /******************************************************************************************
+     * Called whenever this activity comes to foreground
+     * Use timer to update trip duration if trip is in progress
+     ******************************************************************************************/
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -465,9 +494,10 @@ public class FragmentMainInput extends Fragment implements ConnectionCallbacks,
 		}
 	}
 
-	/**
+	/******************************************************************************************
 	 * Implementation of {@link LocationListener}.
-	 */
+     * Zooms the map to user's current location (with radius of 16)
+	 ******************************************************************************************/
 	@Override
 	public void onLocationChanged(Location location) {
 		// onMyLocationButtonClick();

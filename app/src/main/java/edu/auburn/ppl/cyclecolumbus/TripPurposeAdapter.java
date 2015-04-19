@@ -18,6 +18,14 @@ public class TripPurposeAdapter extends ArrayAdapter<String> {
 		this.values = values;
 	}
 
+    /******************************************************************************************
+     * Used to get the purpose of the trip.  Different icon attached with each purpose
+     ******************************************************************************************
+     * @param position Position of the icon clicked
+     * @param convertView
+     * @param parent
+     * @return Whichever item was clicked
+     ******************************************************************************************/
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context

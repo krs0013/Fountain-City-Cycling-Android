@@ -60,6 +60,7 @@ public class FragmentUserInfo extends Fragment {
 		final View rootView = inflater.inflate(R.layout.activity_user_info,
 				container, false);
 
+        /* Opens to internal instructions about the app */
 		final Button GetStarted = (Button) rootView
 				.findViewById(R.id.buttonGetStarted);
 		GetStarted.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +81,7 @@ public class FragmentUserInfo extends Fragment {
 			}
 		});
 
+        /* Opens to internal contest agreement */
         final Button contestAgreement = (Button) rootView.findViewById(R.id.contest_agreement);
         contestAgreement.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,6 +101,7 @@ public class FragmentUserInfo extends Fragment {
             }
         });
 
+        /* Opens to external web page */
         final Button website = (Button) rootView.findViewById(R.id.website);
         website.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,10 +196,9 @@ public class FragmentUserInfo extends Fragment {
         super.onDetach();
     }
 
-    /*************************************************************************************************
-     * Use this to change around the left and right arrows in the instructions
-     *************************************************************************************************
-     *************************************************************************************************/
+    /******************************************************************************************
+     * Use this to revert to previous view whe the 'X' is clicked
+     ******************************************************************************************/
     private void setXClickListener(final View view, final FadeSingleton fade, final int mShortAnimationDuration) {
         final View x = view.findViewById(R.id.x_rl);
         x.setOnClickListener(new View.OnClickListener() {
@@ -220,11 +222,10 @@ public class FragmentUserInfo extends Fragment {
         });
     }
 
-    /*************************************************************************************************
+    /******************************************************************************************
      * Saves the agreement IN-APP.
      * Writes to internal memory file in JSON form
-     *************************************************************************************************
-     *************************************************************************************************/
+     ******************************************************************************************/
     private void setUserAgreementsClickListener(final View view) {
 
         Button agree = (Button) view.findViewById(R.id.agree);  // User agrees
@@ -268,6 +269,9 @@ public class FragmentUserInfo extends Fragment {
 		// savePreferences();
 	}
 
+    /******************************************************************************************
+     * Shared preferences so it will save in-app and I dont have to
+     ******************************************************************************************/
 	public void savePreferences() {
 		// Toast.makeText(getActivity(), "savePreferences()",
 		// Toast.LENGTH_LONG).show();

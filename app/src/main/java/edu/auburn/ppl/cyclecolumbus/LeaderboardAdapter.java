@@ -20,12 +20,21 @@ public class LeaderboardAdapter extends ArrayAdapter<String> {
     private static final String TAG_USER_ID = "user_id";
     private static final String TAG_SCORE = "score";
 
+    /* Constructor */
     public LeaderboardAdapter(Context context, ArrayList<HashMap<String, String>> leaderList) {
         super(context, R.layout.listitem, new String[leaderList.size()]);
         this.context = context;
         this.leaderList = leaderList;
     }
 
+    /******************************************************************************************
+     * Used to set the ListView in the Leader Board activity
+     ******************************************************************************************
+     * @param position Iterates through ListView and populates each one
+     * @param convertView
+     * @param parent
+     * @return
+     ******************************************************************************************/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
@@ -37,6 +46,7 @@ public class LeaderboardAdapter extends ArrayAdapter<String> {
         riderID.setText("Rider ID: " + leaderList.get(position).get(TAG_USER_ID));
         //score.setText(leaderList.get(position).get(TAG_SCORE));
 
+        /* Rounds the score to a whole number */
         String roundString = leaderList.get(position).get(TAG_SCORE);
         double tempScore = Double.parseDouble(roundString);
         int roundedScore = (int) tempScore;

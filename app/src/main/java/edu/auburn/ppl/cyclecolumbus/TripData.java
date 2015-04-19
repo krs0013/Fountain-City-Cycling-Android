@@ -64,18 +64,30 @@ public class TripData {
 		return t;
 	}
 
+    /******************************************************************************************
+     * Used to get a trip that was already recorded
+     * Sends back all of the previously saved data along with it
+     ******************************************************************************************
+     * @param c Context
+     * @param tripid Unique trip ID of the data you want to get
+     * @return TripData object form
+     ******************************************************************************************/
 	public static TripData fetchTrip(Context c, long tripid) {
 		TripData t = new TripData(c.getApplicationContext(), tripid);
 		t.populateDetails();
 		return t;
 	}
 
+    /* Constructor */
 	public TripData(Context ctx, long tripid) {
 		Context context = ctx.getApplicationContext();
 		this.tripid = tripid;
 		mDb = new DbAdapter(context);
 	}
 
+    /******************************************************************************************
+     * Sets all of the info to these values first
+     ******************************************************************************************/
 	void initializeData() {
 		startTime = System.currentTimeMillis();
 		endTime = System.currentTimeMillis();
@@ -94,6 +106,10 @@ public class TripData {
 	}
 
 	// Get lat/long extremes, etc, from trip record
+
+    /******************************************************************************************
+     * Gets the lat/long extremes, etc from the trip that was recorded
+     ******************************************************************************************/
 	void populateDetails() {
 
 		mDb.openReadOnly();
@@ -124,12 +140,21 @@ public class TripData {
 		mDb.close();
 	}
 
+    /******************************************************************************************
+     * Saves the trip in the database
+     * Creates it
+     ******************************************************************************************
+     * @param c (not yet used)
+     ******************************************************************************************/
 	void createTripInDatabase(Context c) {
 		mDb.open();
 		tripid = mDb.createTrip();
 		mDb.close();
 	}
 
+    /******************************************************************************************
+     * Deletes a trip with the unique tripID
+     ******************************************************************************************/
 	void dropTrip() {
 		mDb.open();
 		mDb.deleteAllCoordsForTrip(tripid);
@@ -137,6 +162,11 @@ public class TripData {
 		mDb.close();
 	}
 
+    /******************************************************************************************
+     * Gets all of the points in a trip
+     ******************************************************************************************
+     * @return ArrayList of points
+     ******************************************************************************************/
 	public ArrayList<CyclePoint> getPoints() {
 		// If already built, don't build again!
 		if (gpspoints != null && gpspoints.size() > 0) {
@@ -186,14 +216,14 @@ public class TripData {
 		return gpspoints;
 	}
 
-	// private void addPointToSavedMap(int lat, int lgt, double currentTime,
-	// float acc) {
-	// CyclePoint pt = new CyclePoint(lat, lgt, currentTime, acc);
-	//
-	// OverlayItem opoint = new OverlayItem(pt, null, null);
-	// gpspoints.addOverlay(opoint);
-	// }
-
+    /******************************************************************************************
+     * Adds a point where the user is currently
+     ******************************************************************************************
+     * @param loc User's current lat/long
+     * @param currentTime Current time the point is added
+     * @param dst Distance
+     * @return True if added, false if not
+     ******************************************************************************************/
 	boolean addPointNow(Location loc, double currentTime, float dst) {
 		int lat = (int) (loc.getLatitude() * 1E6);
 		int lgt = (int) (loc.getLongitude() * 1E6);
@@ -239,6 +269,7 @@ public class TripData {
 		return rtn;
 	}
 
+    // (not yet used)
 	public boolean getStatus(int tripStatus) {
 		boolean rtn;
 		mDb.open();
@@ -247,10 +278,21 @@ public class TripData {
 		return rtn;
 	}
 
+    /******************************************************************************************
+     * Starts a trip with empty strings
+     ******************************************************************************************/
 	public void updateTrip() {
 		updateTrip("", "", "", "");
 	}
 
+    /******************************************************************************************
+     * Updates the current trip being ridden
+     ******************************************************************************************
+     * @param purpose Commute, school, etc
+     * @param fancyStart Start time
+     * @param fancyInfo Info about trip
+     * @param notes Notes (optional) about the trip
+     ******************************************************************************************/
 	public void updateTrip(String purpose, String fancyStart, String fancyInfo,
 			String notes) {
 		// Save the trip details to the phone database. W00t!

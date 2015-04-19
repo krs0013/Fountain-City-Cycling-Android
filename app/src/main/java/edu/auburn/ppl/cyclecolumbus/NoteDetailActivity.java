@@ -74,6 +74,13 @@ public class NoteDetailActivity extends Activity {
 		});
 	}
 
+    /******************************************************************************************
+     * Used when user takes an image
+     ******************************************************************************************
+     * @param requestCode Image request code
+     * @param resultCode Image result code
+     * @param data Intent that is to be used to get the image
+     ******************************************************************************************/
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
 			photo = (Bitmap) data.getExtras().get("data");
@@ -82,12 +89,24 @@ public class NoteDetailActivity extends Activity {
 		}
 	}
 
+    /******************************************************************************************
+     * Converts image (bitmap) to byte array
+     ******************************************************************************************
+     * @param bitmap Current image
+     * @return Byte array of the image
+     ******************************************************************************************/
 	public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		bitmap.compress(CompressFormat.PNG, 0, outputStream);
 		return outputStream.toByteArray();
 	}
 
+    /******************************************************************************************
+     * Send the note to server
+     ******************************************************************************************
+     * @param noteDetailsToUpload Details of the note
+     * @param noteImage Optional image
+     ******************************************************************************************/
 	void submit(String noteDetailsToUpload, byte[] noteImage) {
 		final Intent xi = new Intent(this, NoteMapActivity.class);
 
@@ -144,6 +163,12 @@ public class NoteDetailActivity extends Activity {
 		NoteDetailActivity.this.finish();
 	}
 
+    /******************************************************************************************
+     * Generate unique device ID
+     * Must be length 32 to match iOS and to satisfy server request
+     ******************************************************************************************
+     * @return String form of device ID
+     ******************************************************************************************/
 	public String getDeviceId() {
 		String androidId = System.getString(this.getContentResolver(),
 				System.ANDROID_ID);

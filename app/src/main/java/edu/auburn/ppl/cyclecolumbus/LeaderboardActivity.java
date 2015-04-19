@@ -1,7 +1,6 @@
 package edu.auburn.ppl.cyclecolumbus;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,9 +27,6 @@ import java.util.List;
  */
 public class LeaderboardActivity extends ListActivity {
 
-    // Progress Dialog
-    private ProgressDialog pDialog;
-
     SwipeRefreshLayout mSwipeRefreshLayout;
     ListAdapter adapter;
 
@@ -39,7 +35,7 @@ public class LeaderboardActivity extends ListActivity {
 
     ArrayList<HashMap<String, String>> leaderList;
 
-    // url to get all products list
+    // url to get leader list
     private static String url_leaderboard = "http://FountainCityCycling.org/leaderboard_request/";
 
     // JSON Node names
@@ -53,7 +49,7 @@ public class LeaderboardActivity extends ListActivity {
     private String user_id = "";
 
     // products JSONArray
-    JSONArray products = null;
+    JSONArray tempLeaders = null;
 
     //10.0.2.2 is the address used by the Android emulators to refer to the host address
     // change this to the IP of another host if required
@@ -102,18 +98,16 @@ public class LeaderboardActivity extends ListActivity {
 
         String[] array = {};
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d("KENNY", "In pre execute");
         }
 
-        /**
-         * getting All products from url
-         */
+        /******************************************************************************************
+         * Retrieves all of the leaders in the leader board
+         * Really, any rider to take a ride will be in this leaderboard
+         ******************************************************************************************/
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -129,12 +123,12 @@ public class LeaderboardActivity extends ListActivity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-                    // products found
-                    // Getting Array of Products
-                    products = json.getJSONArray(TAG_LEADERS);
-                    // looping through All Products
-                    for (int i = 0; i < products.length(); i++) {
-                        JSONObject c = products.getJSONObject(i);
+                    // Leader List found
+                    // Getting Array of leaders
+                    tempLeaders = json.getJSONArray(TAG_LEADERS);
+                    // looping through all leaders
+                    for (int i = 0; i < tempLeaders.length(); i++) {
+                        JSONObject c = tempLeaders.getJSONObject(i);
 
                         // Storing each json item in variable
                         String id = c.getString(TAG_USER_ID);
@@ -166,13 +160,10 @@ public class LeaderboardActivity extends ListActivity {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * *
-         */
+        /******************************************************************************************
+         * After completing background task, now set the adapter with the information retrieved
+         ******************************************************************************************/
         protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-            //pDialog.dismiss();
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
                 public void run() {
@@ -192,16 +183,11 @@ public class LeaderboardActivity extends ListActivity {
         }
     }
 
-    //The below passes the tag and the user name over to the JSON parser class
-//    public JSONObject getLeaderboard(){
-//        List<NameValuePair> params = new ArrayList<NameValuePair>();
-//        params.add(new BasicNameValuePair("tag", "leaderBoard"));
-//        JSONObject json = jsonParser.getJSONFromUrl(apiCall, params);
-//        return json;
-//    }
-
-    // fake a network operation's delayed response
-    // this is just for demonstration, not real code!
+    /******************************************************************************************
+     * Refreshes the leaderboard scores
+     * Can see in real-time the new scores if people are riding
+     * The 2000 is sort of a 'dummy' value to make refresh seem like its doing a lot haha
+     ******************************************************************************************/
     private void refreshContent() {
 
         Toast.makeText(getApplicationContext(), "Refreshing...", Toast.LENGTH_SHORT).show();
@@ -215,6 +201,11 @@ public class LeaderboardActivity extends ListActivity {
         }, 2000);
     }
 
+    /******************************************************************************************
+     * Used to retrieve the Rider ID (since device ID is also unique and can be easily retrieved)
+     ******************************************************************************************
+     * @return String form of the device ID
+     ******************************************************************************************/
     public String getDeviceId() {
         String androidId = Settings.System.getString(this.getContentResolver(),
                 Settings.System.ANDROID_ID);

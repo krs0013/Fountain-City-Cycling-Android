@@ -19,11 +19,12 @@ public class FadeSingleton {
         return instance;
     }
 
-    /**
+    /******************************************************************************************
      * Uses the View v to fade it into view.
+     ******************************************************************************************
      * @param v Holds the id to fade into view
      * @param duration This is how long it will take to fade it in.
-     */
+     ******************************************************************************************/
     @SuppressLint("NewApi")
     public void fadeIn(final View v, int duration) {
 
@@ -45,12 +46,13 @@ public class FadeSingleton {
                 });
     }
 
-    /**
+    /******************************************************************************************
      * Uses the View v to fade out of view.
      * Sets an onAnimationEnd listener to set the view to GONE after completion.
+     ******************************************************************************************
      * @param v Holds the id to fade into view
      * @param duration This is how long it will take to fade it in.
-     */
+     ******************************************************************************************/
     @SuppressLint("NewApi")
     public void fadeOut(final View v, int duration) {
 

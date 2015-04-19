@@ -72,6 +72,9 @@ public class FragmentSavedTripsSection extends Fragment {
 		return rootView;
 	}
 
+    /******************************************************************************************
+     * ActionMode when the user wants to edit the tirps tab
+     ******************************************************************************************/
 	private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
 
 		// Called when the action mode is created; startActionMode() was called
@@ -149,6 +152,11 @@ public class FragmentSavedTripsSection extends Fragment {
 		}
 	};
 
+    /******************************************************************************************
+     * Puts each trip in a list on the trips tab
+     ******************************************************************************************
+     * @param lv ListView to easily add each trip
+     ******************************************************************************************/
 	void populateTripList(ListView lv) {
 		// Get list from the real phone database. W00t!
 		final DbAdapter mDb = new DbAdapter(getActivity());
@@ -215,6 +223,11 @@ public class FragmentSavedTripsSection extends Fragment {
 		registerForContextMenu(lv);
 	}
 
+    /******************************************************************************************
+     * The three buttons that appear when the user clicks 'Save' during a trip
+     ******************************************************************************************
+     * @param position Lets me know which one they clicked
+     ******************************************************************************************/
 	private void buildAlertMessageUnuploadedTripClicked(final long position) {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(
 				getActivity());
@@ -241,6 +254,12 @@ public class FragmentSavedTripsSection extends Fragment {
 		alert.show();
 	}
 
+    /******************************************************************************************
+     * If there was little or no internet, the trip may not have uploaded.
+     * This will let them try again
+     ******************************************************************************************
+     * @param tripId (not used yet)
+     ******************************************************************************************/
 	private void retryTripUpload(long tripId) {
 		TripUploader uploader = new TripUploader(getActivity());
 		FragmentSavedTripsSection f2 = (FragmentSavedTripsSection) getActivity()
@@ -252,6 +271,12 @@ public class FragmentSavedTripsSection extends Fragment {
 		uploader.execute();
 	}
 
+    /******************************************************************************************
+     * When the user clicks the 'Edit' button, they can delete a trip
+     * This is what is called when they actually click delete
+     ******************************************************************************************
+     * @param tripId Uses unique trip ID to delete trip
+     ******************************************************************************************/
 	private void deleteTrip(long tripId) {
 		DbAdapter mDbHelper = new DbAdapter(getActivity());
 		mDbHelper.open();

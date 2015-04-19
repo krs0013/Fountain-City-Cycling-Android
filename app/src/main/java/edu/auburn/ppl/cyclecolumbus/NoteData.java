@@ -54,6 +54,12 @@ public class NoteData {
 	public static int STATUS_COMPLETE = 1;
 	public static int STATUS_SENT = 2;
 
+    /******************************************************************************************
+     * Creates a unique note
+     ******************************************************************************************
+     * @param c
+     * @return
+     ******************************************************************************************/
 	public static NoteData createNote(Context c) {
 		NoteData t = new NoteData(c.getApplicationContext(), 0);
 		t.createNoteInDatabase(c);
@@ -61,18 +67,29 @@ public class NoteData {
 		return t;
 	}
 
+    /******************************************************************************************
+     * Retrieve an existing note
+     ******************************************************************************************
+     * @param c Context
+     * @param noteid Unique note ID to retrieve
+     * @return
+     ******************************************************************************************/
 	public static NoteData fetchNote(Context c, long noteid) {
 		NoteData t = new NoteData(c.getApplicationContext(), noteid);
 		t.populateDetails();
 		return t;
 	}
 
+    /* Constructor */
 	public NoteData(Context ctx, long noteid) {
 		Context context = ctx.getApplicationContext();
 		this.noteid = noteid;
 		mDb = new DbAdapter(context);
 	}
 
+    /******************************************************************************************
+     * Sets initial values before putting real values in
+     ******************************************************************************************/
 	void initializeData() {
 		startTime = System.currentTimeMillis();
 		notetype = -1;
@@ -87,7 +104,9 @@ public class NoteData {
 		// updateNote();
 	}
 
-	// Get lat/long extremes, etc, from note record
+    /******************************************************************************************
+     * Gets all of the lat/long, etc from the note
+     ******************************************************************************************/
 	void populateDetails() {
 		mDb.openReadOnly();
 
@@ -119,12 +138,20 @@ public class NoteData {
 		mDb.close();
 	}
 
+    /******************************************************************************************
+     * Creates a unique note in sqlite DB
+     ******************************************************************************************
+     * @param c (not yet used)
+     ******************************************************************************************/
 	void createNoteInDatabase(Context c) {
 		mDb.open();
 		noteid = mDb.createNote();
 		mDb.close();
 	}
 
+    /******************************************************************************************
+     * Deletes the unique note from sqlite DB
+     ******************************************************************************************/
 	void dropNote() {
 		mDb.open();
 		mDb.deleteNote(noteid);
@@ -132,6 +159,14 @@ public class NoteData {
 	}
 
 	// from MainInput, add time and location point
+
+    /******************************************************************************************
+     * From the MainInput, add the time and location point
+     ******************************************************************************************
+     * @param loc Current user location
+     * @param currentTime Current time of note
+     * @return True if added, false if not
+     ******************************************************************************************/
 	boolean addPointNow(Location loc, double currentTime) {
 		int lat = (int) (loc.getLatitude() * 1E6);
 		int lgt = (int) (loc.getLongitude() * 1E6);
@@ -173,6 +208,15 @@ public class NoteData {
 		updateNote(-1, "", "", "", null);
 	}
 
+    /******************************************************************************************
+     * Updates an existing note in the sqlite DB with the values in parameter
+     ******************************************************************************************
+     * @param notetype
+     * @param notefancystart
+     * @param notedetails
+     * @param noteimgurl
+     * @param noteimgdata
+     ******************************************************************************************/
 	public void updateNote(int notetype, String notefancystart,
 			String notedetails, String noteimgurl, byte[] noteimgdata) {
 		// Save the note details to the phone database. W00t!

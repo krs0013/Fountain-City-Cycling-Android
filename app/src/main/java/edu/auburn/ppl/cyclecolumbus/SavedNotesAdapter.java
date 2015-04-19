@@ -18,6 +18,7 @@ public class SavedNotesAdapter extends SimpleCursorAdapter {
 	private final int[] to;
 	Cursor cursor;
 
+    /* Constructor */
 	public SavedNotesAdapter(Context context, int layout, Cursor c,
 			String[] from, int[] to, int flags) {
 		super(context, R.layout.saved_notes_list_item, c, from, to, flags);
@@ -62,6 +63,7 @@ public class SavedNotesAdapter extends SimpleCursorAdapter {
 		int status = cursor.getInt(cursor.getColumnIndex("notestatus"));
 		Log.v("KENNY", "Status: " + status);
 
+        /*** 2 = good, 1 = bad ***/
 		if (status == 2) {
 			switch (cursor.getInt(cursor.getColumnIndex("notetype"))) {
 			case 0:
