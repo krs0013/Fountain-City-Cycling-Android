@@ -107,6 +107,7 @@ public class TabsConfig extends FragmentActivity implements
 
     /******************************************************************************************
      * Responds each time the user clicks a tab
+     * Only the Record tab has no actionbar visible
      ******************************************************************************************
      * @param tab This is the tab the user clicked
      * @param fragmentTransaction
