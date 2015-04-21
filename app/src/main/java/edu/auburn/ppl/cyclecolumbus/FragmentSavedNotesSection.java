@@ -202,9 +202,19 @@ public class FragmentSavedNotesSection extends Fragment {
 						v.setBackgroundColor(Color.parseColor("#ff33b5e5"));
 					}
 					if (noteIdArray.size() == 0) {
-						saveMenuItemDelete.setEnabled(false);
+                        try {
+                            saveMenuItemDelete.setEnabled(false);    // Crashed on some android devices, but still works catching it
+                        } catch (NullPointerException e) {
+                            Log.d("KENNY", "Crashed doing saveMenuItemDelete.setEnabled(false) in NOTES");
+                            e.printStackTrace();
+                        }
 					} else {
-						saveMenuItemDelete.setEnabled(true);
+                        try {
+                            saveMenuItemDelete.setEnabled(true);    // Crashed on some android devices, but still works catching it
+                        } catch (NullPointerException e) {
+                            Log.d("KENNY", "Crashed doing saveMenuItemDelete.setEnabled(true) in NOTES");
+                            e.printStackTrace();
+                        }
 					}
 
 					mActionModeNote.setTitle(noteIdArray.size() + " Selected");

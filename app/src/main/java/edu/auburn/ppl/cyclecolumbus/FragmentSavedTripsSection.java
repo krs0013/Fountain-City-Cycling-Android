@@ -210,9 +210,19 @@ public class FragmentSavedTripsSection extends Fragment {
 					// Toast.makeText(getActivity(), "Selected: " + tripIdArray,
 					// Toast.LENGTH_SHORT).show();
 					if (tripIdArray.size() == 0) {
-						saveMenuItemDelete.setEnabled(false);
+                        try {
+						    saveMenuItemDelete.setEnabled(false);    // Crashed on some android devices, but still works catching it
+                        } catch (NullPointerException e) {
+                            Log.d("KENNY", "Crashed doing saveMenuItemDelete.setEnabled(true) in TRIPS");
+                            e.printStackTrace();
+                        }
 					} else {
-						saveMenuItemDelete.setEnabled(true);
+                        try {
+                            saveMenuItemDelete.setEnabled(true);    // Crashed on some android devices, but still works catching it
+                        } catch (NullPointerException e) {
+                            Log.d("KENNY", "Crashed doing saveMenuItemDelete.setEnabled(true) in TRIPS");
+                            e.printStackTrace();
+                        }
 					}
 
 					mActionMode.setTitle(tripIdArray.size() + " Selected");
