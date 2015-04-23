@@ -122,16 +122,29 @@ public class FragmentSavedTripsSection extends Fragment {
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 			switch (item.getItemId()) {
 			case R.id.action_delete_saved_trips:
-				// delete selected trips
-				for (int i = 0; i < tripIdArray.size(); i++) {
-					deleteTrip(tripIdArray.get(i));
-				}
-				mode.finish(); // Action picked, so close the CAB
+                try {
+                    // delete selected trips
+                    for (int i = 0; i < tripIdArray.size(); i++) {
+                        deleteTrip(tripIdArray.get(i));
+                    }
+                    mode.finish(); // Action picked, so close the CAB
+                } catch (NullPointerException e) {
+                    // This crashed on Nexus so I added try-catch
+                    Log.d("KENNY", "Caught Trip delete crash");
+                    e.printStackTrace();
+                }
 				return true;
 			case R.id.action_upload_saved_trips:
-				// upload selected trips
-				retryTripUpload(storedID);
-				mode.finish(); // Action picked, so close the CAB
+                try {
+                    // upload selected trips
+                    retryTripUpload(storedID);
+                    mode.finish(); // Action picked, so close the CAB
+                } catch (NullPointerException e) {
+                    // This crashed on Nexus so I added try-catch
+                    Log.d("KENNY", "Caught Trip upload crash");
+                    Toast.makeText(getActivity(), "Trip has already been uploaded", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
 				return true;
 			default:
 				return false;

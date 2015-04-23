@@ -120,15 +120,28 @@ public class FragmentSavedNotesSection extends Fragment {
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
 			switch (item.getItemId()) {
 			case R.id.action_delete_saved_notes:
-				// delete selected notes
-				for (int i = 0; i < noteIdArray.size(); i++) {
-					deleteNote(noteIdArray.get(i));
-				}
-				mode.finish(); // Action picked, so close the CAB
+                try {
+                    // delete selected notes
+                    for (int i = 0; i < noteIdArray.size(); i++) {
+                        deleteNote(noteIdArray.get(i));
+                    }
+                    mode.finish(); // Action picked, so close the CAB
+                } catch (NullPointerException e) {
+                    // This crashed on Nexus so I added try-catch
+                    Log.d("KENNY", "Caught Note delete crash");
+                    e.printStackTrace();
+                }
 				return true;
-			case R.id.action_upload_saved_notes:
-				retryNoteUpload(storedID);
-				mode.finish(); // Action picked, so close the CAB
+            case R.id.action_upload_saved_notes:
+                try {
+                    retryNoteUpload(storedID);
+                    mode.finish(); // Action picked, so close the CAB
+                } catch (NullPointerException e) {
+                    // This crashed on Nexus so I added try-catch
+                    Log.d("KENNY", "Caught Note upload crash");
+                    Toast.makeText(getActivity(), "Note has already been uploaded", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
 				return true;
 			default:
 				return false;
